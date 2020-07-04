@@ -1,0 +1,73 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Cards/CardTypes/ChooseCard.gd" type="Script" id=1]
+
+[node name="Choose" type="Node2D"]
+script = ExtResource( 1 )
+s_option_a = "Bebe 2"
+s_option_b = "Bebe 1"
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_right = 1080.0
+margin_bottom = 1920.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionA" type="Button" parent="Panel"]
+self_modulate = Color( 1, 0, 0, 1 )
+margin_top = 300.0
+margin_right = 216.0
+margin_bottom = 462.0
+rect_scale = Vector2( 5, 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionALabel" type="Label" parent="Panel/OptionA"]
+margin_right = 216.0
+margin_bottom = 162.0
+text = "Option A"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionB" type="Button" parent="Panel"]
+self_modulate = Color( 0.101961, 0.133333, 0.619608, 1 )
+margin_left = -2.0
+margin_top = 1110.0
+margin_right = 214.0
+margin_bottom = 1272.0
+rect_scale = Vector2( 5, 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionBLabel" type="Label" parent="Panel/OptionB"]
+margin_right = 216.0
+margin_bottom = 162.0
+text = "Option B"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CardLabel" type="Label" parent="Panel"]
+margin_right = 216.0
+margin_bottom = 60.0
+rect_scale = Vector2( 5, 5 )
+text = "Choose 1"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Panel/OptionA" to="." method="advance"]
+[connection signal="button_down" from="Panel/OptionB" to="." method="advance"]

@@ -1,21 +1,17 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Cards/CardTypes/ChooseCard.gd" type="Script" id=1]
+[ext_resource path="res://Cards/CardTypes/ChooseCard/ChooseCard.gd" type="Script" id=1]
 
-[node name="Choose" type="Node2D"]
-script = ExtResource( 1 )
-s_option_a = "Bebe 2"
-s_option_b = "Bebe 1"
-
-[node name="Panel" type="Panel" parent="."]
-self_modulate = Color( 0, 0, 0, 1 )
+[node name="ChooseCard" type="Panel"]
+self_modulate = Color( 0.0313726, 0.0313726, 0.0313726, 1 )
 margin_right = 1080.0
 margin_bottom = 1920.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionA" type="Button" parent="Panel"]
+[node name="OptionA" type="Button" parent="."]
 self_modulate = Color( 1, 0, 0, 1 )
 margin_top = 300.0
 margin_right = 216.0
@@ -25,7 +21,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionALabel" type="Label" parent="Panel/OptionA"]
+[node name="OptionALabel" type="Label" parent="OptionA"]
 margin_right = 216.0
 margin_bottom = 162.0
 text = "Option A"
@@ -36,7 +32,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionB" type="Button" parent="Panel"]
+[node name="RichTextLabel" type="RichTextLabel" parent="OptionA"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionB" type="Button" parent="."]
 self_modulate = Color( 0.101961, 0.133333, 0.619608, 1 )
 margin_left = -2.0
 margin_top = 1110.0
@@ -47,7 +50,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionBLabel" type="Label" parent="Panel/OptionB"]
+[node name="OptionBLabel" type="Label" parent="OptionB"]
 margin_right = 216.0
 margin_bottom = 162.0
 text = "Option B"
@@ -57,7 +60,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CardLabel" type="Label" parent="Panel"]
+[node name="CardLabel" type="Label" parent="."]
 margin_right = 216.0
 margin_bottom = 60.0
 rect_scale = Vector2( 5, 5 )
@@ -69,5 +72,5 @@ uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="Panel/OptionA" to="." method="advance"]
-[connection signal="button_down" from="Panel/OptionB" to="." method="advance"]
+[connection signal="pressed" from="OptionA" to="." method="advance"]
+[connection signal="button_down" from="OptionB" to="." method="advance"]

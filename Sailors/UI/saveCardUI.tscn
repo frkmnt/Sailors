@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Fonts/Custom_Fonts/cardTitleLabel.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Fonts/Custom_Fonts/cardLabel.tres" type="DynamicFont" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 364.0
+margin_bottom = 520.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Panel"]
+margin_right = 364.0
+margin_bottom = 83.0
+custom_fonts/font = ExtResource( 1 )
+text = "SAVE CARD"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="Panel"]
+margin_top = 111.0
+margin_right = 364.0
+margin_bottom = 342.0
+custom_fonts/font = ExtResource( 2 )
+text = "DESCRIPTION"
+align = 1
+valign = 1
+
+[node name="SaveCard" type="Button" parent="Panel"]
+margin_top = 380.055
+margin_right = 364.0
+margin_bottom = 448.055
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GoToDeck" type="Button" parent="Panel"]
+margin_top = 451.026
+margin_right = 364.0
+margin_bottom = 518.026
+__meta__ = {
+"_edit_use_anchors_": false
+}

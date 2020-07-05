@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Title_Label.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/Custom_Fonts/cardLabel.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Fonts/Custom_Fonts/cardTitleLabel.tres" type="DynamicFont" id=3]
+
+[node name="DoCard" type="Panel"]
+margin_left = -4.23804
+margin_top = 7.5509
+margin_right = 1075.76
+margin_bottom = 1927.55
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next_Button" type="Button" parent="."]
+margin_left = 380.635
+margin_top = 1237.55
+margin_right = 744.635
+margin_bottom = 1417.55
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button_Label" type="Label" parent="Next_Button"]
+margin_left = -10.6787
+margin_top = 42.7148
+margin_right = 366.321
+margin_bottom = 179.715
+custom_fonts/font = ExtResource( 2 )
+text = "Descriçao Butao"
+
+[node name="Description_Panel" type="Panel" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description_Label" type="Label" parent="Description_Panel"]
+self_modulate = Color( 1, 0, 0.164706, 1 )
+margin_left = 147.686
+margin_top = 337.059
+margin_right = 916.686
+margin_bottom = 1200.06
+custom_fonts/font = ExtResource( 2 )
+text = "Descriçao da função da carta"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title_Panel" type="Panel" parent="."]
+margin_right = 1080.0
+margin_bottom = 216.0
+
+[node name="Title_Label" type="Label" parent="Title_Panel"]
+margin_left = 122.784
+margin_top = 20.9727
+margin_right = 975.784
+margin_bottom = 196.973
+custom_fonts/font = ExtResource( 3 )
+text = "Descrição Titulo"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button_Saved_Cards" type="Button" parent="."]
+margin_left = 220.343
+margin_top = 1561.31
+margin_right = 872.343
+margin_bottom = 1819.31
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Button_Saved_Cards"]
+margin_left = 28.2842
+margin_top = 50.9119
+margin_right = 618.284
+margin_bottom = 279.912
+custom_fonts/font = ExtResource( 2 )
+text = "Abrir Painel \"Players with
+saved cards\""

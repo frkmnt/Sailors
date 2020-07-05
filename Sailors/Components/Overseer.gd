@@ -8,14 +8,18 @@ var c_deck # contains references to card instances
 
 
 func _ready():
-	c_ui_manager = load("res://UI/UiManager.tscn").instance()
+	c_ui_manager = load("res://UI/uiManager.tscn").instance()
 	add_child(c_ui_manager)
 	c_ui_manager.initialize(self)
 	
 	
 	var card_list = []
-	card_list.append([ [0, 3] ])
-	
+	# choose cards 
+	card_list.append([ [0, 1], [1, 1] ]) 
+	# do cards 
+	card_list.append([ [0, 50], [1, 500] ]) 
+	# keep cards 
+#	card_list.append([ [0, 3], [1, 50] ]) 
 	
 	c_dealer = load("res://Dealer/Dealer.tscn").instance()
 	add_child(c_dealer)

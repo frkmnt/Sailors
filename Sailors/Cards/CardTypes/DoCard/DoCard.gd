@@ -1,34 +1,32 @@
-extends Node2D
+extends Panel
 
 # References
-var c_dealer
+var r_overseer
 
 # Card meta variables
 
-var i_card_type_id = 0
+var i_card_type_id = 1
 
-export (int) var i_card_id
-export (String) var s_option_a
-export (String) var s_option_b
+var c_card_data
 
 
-# Card componentd
-var c_option_a
-var c_option_b 
+# Card components
+var c_what_to_do
+ 
 
 
 
 #==== Bootstrap ====#
-func _ready():
-	c_option_a = get_child(0).get_child(0).get_child(0)
-	c_option_a.set_text(s_option_a) 
-	print(s_option_a)
-	c_option_b = get_child(0).get_child(1).get_child(0)
-	c_option_b.set_text(s_option_b)
+func initialize(overseer):
+	r_overseer = overseer
+	c_what_to_do = get_child(1)
 
 
-func initialize(dealer):
-	c_dealer = dealer
+func set_data_on_card(card_data):
+	c_card_data = card_data
+	
+	c_what_to_do.set_text(c_card_data.s_what_to_do) 
+
 
 
 #==== Logic ====#

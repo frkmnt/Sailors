@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Fonts/Custom_Fonts/cardLabel.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Fonts/Custom_Fonts/cardTitleLabel.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Cards/CardTypes/DoCard/DoCard.gd" type="Script" id=3]
+
+[node name="DoCardPanel" type="Panel"]
+margin_right = 356.0
+margin_bottom = 560.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+margin_right = 354.0
+margin_bottom = 111.0
+custom_fonts/font = ExtResource( 2 )
+text = "DO CARD"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="."]
+margin_left = -1.18921
+margin_top = 172.379
+margin_right = 353.811
+margin_bottom = 398.379
+custom_fonts/font = ExtResource( 1 )
+text = "DESCRIPTION"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GoToDeck" type="Button" parent="."]
+margin_left = -1.0
+margin_top = 486.0
+margin_right = 356.0
+margin_bottom = 560.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

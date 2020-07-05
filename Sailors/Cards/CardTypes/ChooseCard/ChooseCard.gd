@@ -19,15 +19,15 @@ var c_option_b
 #==== Bootstrap ====#
 func initialize(overseer):
 	r_overseer = overseer
+	c_option_a = get_child(0).get_child(0)
+	c_option_b = get_child(1).get_child(0)
 
 
 func set_data_on_card(card_data):
 	c_card_data = card_data
 	
-	c_option_a = get_child(0).get_child(0)
 	c_option_a.set_text(c_card_data.s_option_a) 
 	
-	c_option_b = get_child(1).get_child(0)
 	c_option_b.set_text(c_card_data.s_option_b)
 
 

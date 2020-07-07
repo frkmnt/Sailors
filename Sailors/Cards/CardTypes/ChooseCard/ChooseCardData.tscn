@@ -2,5 +2,5 @@
 
 [ext_resource path="res://Cards/CardTypes/ChooseCard/ChooseCardInfo.gd" type="Script" id=1]
 
-[node name="ChooseCardInfo" type="Node"]
+[node name="ChooseCardData" type="Node"]
 script = ExtResource( 1 )

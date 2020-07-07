@@ -3,8 +3,8 @@ extends Control
 
 
 #==== References ====#
-
 var r_overseer
+onready var r_viewport = get_viewport()
 
 
 #==== Panels ====#
@@ -12,12 +12,11 @@ var r_current_panel
 
 var p_choose_card_panel
 var p_do_card_panel
-
+var p_keep_card_panel
 
 
 #==== Variables ====#
-onready var viewport = get_viewport()
-var minimum_size = Vector2(1080, 1920)
+var v_design_size = Vector2(1080, 1920)
 
 
 
@@ -39,31 +38,20 @@ func initialize_card_panels():
 	p_do_card_panel.initialize(r_overseer)
 	add_child(p_do_card_panel)
 
-#	card_prefab = load("res://Cards/CardTypes/KeepCard/KeepCard.tscn").instance()
-#	c_card_container.add_child(card_prefab)
+	p_keep_card_panel = load("res://UI/KeepCardPanel.tscn").instance()
+	p_keep_card_panel.initialize(r_overseer)
+	add_child(p_keep_card_panel)
 
 
 
 func initialize_resolution():
 	r_current_panel = p_choose_card_panel # REFACTOR
-	viewport.connect("size_changed", self, "window_resize")
+	r_viewport.connect("size_changed", self, "window_resize")
 	window_resize()
 	initialize_panel_visibility()
 
 func window_resize():
-	var current_size = OS.get_window_size()
-
-	var scale_factor = minimum_size.y/current_size.y
-	var new_size = Vector2(current_size.x*scale_factor, minimum_size.y)
-
-	if new_size.y < minimum_size.y:
-		scale_factor = minimum_size.y/new_size.y
-		new_size = Vector2(new_size.x*scale_factor, minimum_size.y)
-	if new_size.x < minimum_size.x:
-		scale_factor = minimum_size.x/new_size.x
-		new_size = Vector2(minimum_size.x, new_size.y*scale_factor)
-
-	viewport.set_size_override(true, new_size)
+	r_viewport.set_size_override(true, v_design_size)
 
 
 func initialize_panel_visibility():
@@ -91,8 +79,7 @@ func set_card_panel(card_data):
 		1: # do 
 			enable_panel(p_do_card_panel, card_data)
 		2: # keep
-			pass
-#			enable_panel(p_choose_card_panel, card_data)
+			enable_panel(p_keep_card_panel, card_data)
 
 
 func enable_panel(new_panel, card_data):

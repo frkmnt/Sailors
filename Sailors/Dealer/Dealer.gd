@@ -8,7 +8,7 @@ var d_cards = {} # dictionary of: unique_card_id: card_data (not the atual card_
 var a_deck = [] # array of: card_index: card_id
 var i_unique_cards = 0
 
-var a_players = []
+var a_players = [] # array of: [ [player_id, kept_cards[]],  ]
 var i_remaining_players
 var i_cur_player = 0
 
@@ -16,10 +16,11 @@ var i_cur_player = 0
 
 #==== Bootstrap ====#
 
-func initialize(overseer, card_list): 
+func initialize(overseer, game_info): 
 	randomize()
 	r_overseer = overseer
-	initialize_card_info(card_list)
+	initialize_card_info(game_info.a_deck)
+#	initialize_players()
 
 
 # initializes the card references and the deck 
@@ -72,17 +73,14 @@ func add_card_references_to_deck(card_qty):
 #==== Logic ====#
 
 func draw_card():
-#	var i
-#	for i in range(a_deck.size()):
-#		print(a_deck[i])
-#		print("dude")
-	
-	var random_card_index = floor(rand_range(0, a_deck.size()))
-	var card_reference_index = a_deck[random_card_index]
-	a_deck.remove(random_card_index)
-	var card_info = d_cards.get(card_reference_index)
-	print(random_card_index)
-	return card_info
+	var deck_size = a_deck.size()
+	if deck_size > 0:
+		var random_card_index = floor(rand_range(0, deck_size))
+		var card_reference_index = a_deck[random_card_index]
+		a_deck.remove(random_card_index)
+		var card_info = d_cards.get(card_reference_index)
+		print(random_card_index)
+		return card_info
 
 
 

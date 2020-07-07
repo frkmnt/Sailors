@@ -1,16 +1,35 @@
-extends Node
+extends Panel
+
+# References
+var r_overseer
+
+# Card meta variables
+
+var i_card_type_id = 1
+
+var c_card_data
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+# Card components
+var c_what_to_do
+ 
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+
+#==== Bootstrap ====#
+func initialize(overseer):
+	r_overseer = overseer
+	c_what_to_do = get_child(1)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func set_data_on_card(card_data):
+	c_card_data = card_data
+	
+	c_what_to_do.set_text(c_card_data.s_what_to_do) 
+
+
+
+#==== Logic ====#
+
+func advance():
+	r_overseer.next_turn()

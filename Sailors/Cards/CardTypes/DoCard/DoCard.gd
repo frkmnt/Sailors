@@ -32,4 +32,4 @@ func set_data_on_card(card_data):
 #==== Logic ====#
 
 func advance():
-	print("clicou")
+	r_overseer.next_turn()

@@ -16,7 +16,7 @@ __meta__ = {
 margin_right = 1080.0
 margin_bottom = 300.0
 custom_fonts/font = ExtResource( 2 )
-text = "DO CARD"
+text = "Do Card"
 align = 1
 valign = 1
 __meta__ = {
@@ -31,14 +31,16 @@ custom_fonts/font = ExtResource( 1 )
 text = "DESCRIPTION"
 align = 1
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GoToDeck" type="Button" parent="."]
-margin_top = 1720.0
+[node name="NextTurnButton" type="Button" parent="."]
 margin_right = 1080.0
 margin_bottom = 1920.0
+flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="button_down" from="NextTurnButton" to="." method="advance"]

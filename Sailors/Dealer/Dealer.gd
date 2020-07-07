@@ -8,11 +8,16 @@ var d_cards = {} # dictionary of: unique_card_id: card_data (not the atual card_
 var a_deck = [] # array of: card_index: card_id
 var i_unique_cards = 0
 
+var a_players = []
+var i_remaining_players
+var i_cur_player = 0
+
 
 
 #==== Bootstrap ====#
 
 func initialize(overseer, card_list): 
+	randomize()
 	r_overseer = overseer
 	initialize_card_info(card_list)
 
@@ -44,10 +49,8 @@ func load_all_cards_of_type(card_type_id, cards_info_list):
 	for card_info_index in range(cards_info_list.size()): # iterate the info_set of all cards of a certain type
 		card_info_set = cards_info_list[card_info_index] # info set: [card_id, card_qty]
 		file_name = "card_" + String(card_info_set[0]) # card_id
-		print(file_name)
 		# TODO check if path exists
 		card_data = load(directory.get_current_dir() + "/" + file_name + ".tscn")
-		print(card_data)
 		add_card_to_dictionary(card_data.instance())
 		add_card_references_to_deck(card_info_set[1]) # card qty
 		i_unique_cards += 1
@@ -69,11 +72,16 @@ func add_card_references_to_deck(card_qty):
 #==== Logic ====#
 
 func draw_card():
+#	var i
+#	for i in range(a_deck.size()):
+#		print(a_deck[i])
+#		print("dude")
+	
 	var random_card_index = floor(rand_range(0, a_deck.size()))
 	var card_reference_index = a_deck[random_card_index]
 	a_deck.remove(random_card_index)
-	print(d_cards)
-	var card_info = d_cards[card_reference_index]
+	var card_info = d_cards.get(card_reference_index)
+	print(random_card_index)
 	return card_info
 
 

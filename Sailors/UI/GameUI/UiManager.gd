@@ -40,13 +40,13 @@ func initialize_card_panels():
 	var deck_panel
 	deck_panel = get_child(0)
 	
-	p_choose_card_panel = deck_panel.get_child(0)
+	p_choose_card_panel = deck_panel.get_child(1)
 	p_choose_card_panel.initialize(r_overseer)
 	
-	p_do_card_panel = deck_panel.get_child(1)
+	p_do_card_panel = deck_panel.get_child(2)
 	p_do_card_panel.initialize(r_overseer)
 	
-	p_keep_card_panel = deck_panel.get_child(2)
+	p_keep_card_panel = deck_panel.get_child(3)
 	p_keep_card_panel.initialize(r_overseer)
 
 

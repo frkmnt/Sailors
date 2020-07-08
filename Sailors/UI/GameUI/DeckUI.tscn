@@ -15,9 +15,10 @@ __meta__ = {
 }
 
 [node name="DeckPanel" type="Panel" parent="."]
-margin_left = 50.0
+anchor_right = 0.5
+margin_left = 46.395
 margin_top = 300.0
-margin_right = 1030.0
+margin_right = 1026.4
 margin_bottom = 1600.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -33,7 +34,6 @@ __meta__ = {
 }
 
 [node name="ChooseCard" parent="DeckPanel" instance=ExtResource( 5 )]
-visible = false
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
@@ -42,7 +42,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="KeepCardPanel" parent="DeckPanel" instance=ExtResource( 4 )]
-visible = false
 size_flags_horizontal = 4
 size_flags_vertical = 4
 

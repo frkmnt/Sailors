@@ -15,7 +15,7 @@ var c_deck # contains references to card instances
 func _ready():
 	load_game_info()
 	
-	c_ui_manager = load("res://UI/GameUI/uiManager.tscn").instance()
+	c_ui_manager = load("res://UI/GameUI/DeckUI.tscn").instance()
 	add_child(c_ui_manager)
 	c_ui_manager.initialize(self)
 	

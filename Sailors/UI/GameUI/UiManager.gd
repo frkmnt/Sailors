@@ -7,6 +7,13 @@ var r_overseer
 onready var r_viewport = get_viewport()
 
 
+#==== Buttons ====#
+var r_deck_button
+var r_stash_button
+var r_options_button
+
+
+
 #==== Panels ====#
 var r_current_panel
 
@@ -30,17 +37,22 @@ func initialize(overseer):
 
 
 func initialize_card_panels():
-	p_choose_card_panel = load("res://UI/ChooseCardPanel.tscn").instance()
-	p_choose_card_panel.initialize(r_overseer)
-	add_child(p_choose_card_panel)
+	var deck_panel
+	deck_panel = get_child(0)
 	
-	p_do_card_panel = load("res://UI/DoCardPanel.tscn").instance()
+	p_choose_card_panel = deck_panel.get_child(0)
+	p_choose_card_panel.initialize(r_overseer)
+	
+	p_do_card_panel = deck_panel.get_child(1)
 	p_do_card_panel.initialize(r_overseer)
-	add_child(p_do_card_panel)
-
-	p_keep_card_panel = load("res://UI/KeepCardPanel.tscn").instance()
+	
+	p_keep_card_panel = deck_panel.get_child(2)
 	p_keep_card_panel.initialize(r_overseer)
-	add_child(p_keep_card_panel)
+
+
+
+	#=============DOOOOOOO BUTTTTTONSSSSS
+
 
 
 

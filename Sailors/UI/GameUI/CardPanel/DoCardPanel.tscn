@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Fonts/Custom_Fonts/cardLabel.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Fonts/Custom_Fonts/cardTitleLabel.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Cards/CardTypes/DoCard/DoCard.gd" type="Script" id=3]
+[ext_resource path="res://UI/GameUI/CardPanel/DoCard.gd" type="Script" id=3]
 
 [node name="DoCardPanel" type="Panel"]
 margin_right = 1080.0

@@ -33,3 +33,6 @@ func set_data_on_card(card_data):
 
 func advance():
 	r_overseer.next_turn()
+
+func keep_card():
+	r_overseer.keep_card()

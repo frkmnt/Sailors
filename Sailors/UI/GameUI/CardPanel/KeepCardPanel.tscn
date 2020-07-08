@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Fonts/Custom_Fonts/cardTitleLabel.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Fonts/Custom_Fonts/cardLabel.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Cards/CardTypes/KeepCard/KeepCard.gd" type="Script" id=3]
+[ext_resource path="res://UI/GameUI/CardPanel/KeepCard.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/Custom_Fonts/cardTitleLabel.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Fonts/Custom_Fonts/cardLabel.tres" type="DynamicFont" id=3]
 
 [node name="KeepCardPanel" type="Panel"]
 margin_right = 1080.0
 margin_bottom = 1920.0
-script = ExtResource( 3 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -15,7 +15,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="."]
 margin_right = 1080.0
 margin_bottom = 300.0
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 2 )
 text = "Keep Card"
 align = 1
 valign = 1
@@ -24,7 +24,7 @@ valign = 1
 margin_top = 300.0
 margin_right = 1080.0
 margin_bottom = 1720.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 text = "Description"
 align = 1
 valign = 1
@@ -33,7 +33,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="KeepCardButton" type="Button" parent="."]
+[node name="PlayCardButton" type="Button" parent="."]
 margin_right = 1080.0
 margin_bottom = 1720.0
 flat = true
@@ -41,14 +41,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlayCardButton" type="Button" parent="."]
+[node name="KeepCardButton" type="Button" parent="."]
 margin_top = 1720.0
 margin_right = 1080.0
 margin_bottom = 1920.0
-custom_fonts/font = ExtResource( 2 )
-text = "Play Card Now"
+custom_fonts/font = ExtResource( 3 )
+text = "Keep Card"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="KeepCardButton" to="." method="advance"]
 [connection signal="pressed" from="PlayCardButton" to="." method="advance"]
+[connection signal="pressed" from="KeepCardButton" to="." method="keep_card"]

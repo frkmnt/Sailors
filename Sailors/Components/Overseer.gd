@@ -15,7 +15,7 @@ var c_deck # contains references to card instances
 func _ready():
 	load_game_info()
 	
-	c_ui_manager = load("res://UI/uiManager.tscn").instance()
+	c_ui_manager = load("res://UI/GameUI/uiManager.tscn").instance()
 	add_child(c_ui_manager)
 	c_ui_manager.initialize(self)
 	
@@ -44,5 +44,12 @@ func next_turn():
 	if card_data != null:
 		print(card_data.i_card_type_id)
 		c_ui_manager.set_card_panel(card_data)
+	c_dealer.test_cur_player_cards()
+	c_dealer.advance_turn()
+
+
+func keep_card():
+	c_dealer.keep_current_card()
+	c_dealer.test_cur_player_cards()
 
 

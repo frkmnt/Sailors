@@ -12,6 +12,7 @@ var a_players = []
 
 func initialize():
 	initialize_deck()
+	initialize_players(null)
 
 
 func initialize_deck():
@@ -33,14 +34,24 @@ func initialize_deck():
 	# keep cards 
 	a_deck.append \
 	([ 
-		[0, 1] 
+		[0, 1], [1, 1]
 	]) 
 
 
 func initialize_players(player_names):
-	var cur_name
-	for cur_name in range(player_names.size()):
-		a_players.append(cur_name)
+	# id 0
+	a_players.append("thc")
+	
+	# id 1
+	a_players.append("xias")
+	
+	# id 2
+	a_players.append("vitente")
+	
+#	var cur_name
+#	for cur_name in range(player_names.size()):
+#		a_players.append(cur_name)
+	
 
 
 

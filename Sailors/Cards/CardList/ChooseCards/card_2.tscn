@@ -2,7 +2,8 @@
 
 [ext_resource path="res://Cards/CardTypes/ChooseCard/ChooseCardInfo.gd" type="Script" id=1]
 
-[node name="Card_0" type="Node"]
+[node name="ChooseCardData" type="Node"]
 script = ExtResource( 1 )
+i_card_id = 2
 s_option_a = "Bebe 1"
-s_option_b = "Bebe 2"
+s_option_b = "Bebe 3 e manda alguém beber 3"

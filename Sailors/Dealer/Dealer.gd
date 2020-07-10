@@ -7,11 +7,12 @@ var r_overseer
 var d_cards = {} # dictionary of: unique_card_id: card_data (not the atual card_id, this one is unique to each session)
 var a_deck = [] # array of: card_index: card_id
 var i_unique_cards = 0
-var i_cur_card = -1
 
-var a_players = [] # array of: [player_id, kept_cards[]]
+var a_players = [] # array of: [player_name, kept_cards[]]
 var i_remaining_players
 var i_cur_player = 0
+
+var a_card_stack = []
 
 
 #==== Bootstrap ====#
@@ -25,7 +26,6 @@ func initialize(overseer, game_info):
 
 # initializes the card references and the deck 
 func initialize_card_info(cards_by_type_list):
-	var card_type_id
 	var cards_info_list
 	
 	for card_type_id in range(cards_by_type_list.size()): # iterate types of cards
@@ -61,16 +61,14 @@ func add_card_to_dictionary(card_data):
 
 
 func add_card_references_to_deck(card_qty):
-	var card_index
 	for card_index in range(card_qty):
 		a_deck.append(i_unique_cards)
 
 
 
 func initialize_players(player_list):
-	var cur_name
-	for cur_name in range(player_list.size()):
-		a_players.append([cur_name, []])
+	for player_index in range(player_list.size()):
+		a_players.append([player_list[player_index], []])
 
 
 
@@ -84,23 +82,43 @@ func draw_card():
 	if deck_size > 0:
 		var random_card_index = floor(rand_range(0, deck_size))
 		var card_reference_index = a_deck[random_card_index]
-		i_cur_card = random_card_index
+		a_card_stack.append(card_reference_index)
 		a_deck.remove(random_card_index)
 		var card_info = d_cards.get(card_reference_index)
-		print(random_card_index)
 		return card_info
 
 
 
 func keep_current_card():
+	var cur_card_ref = a_card_stack[0]
 	var cur_player_info = a_players[i_cur_player]
-	cur_player_info[1].append(i_cur_card)
+	cur_player_info[1].append(cur_card_ref)
+	print(cur_player_info[1])
+
+
+func play_kept_card(player_id, card_id):
+	var kept_card = d_cards.get(card_id)
+	a_card_stack.append(card_id)
+	var player_info = a_players[player_id]
+	var card_index = player_info[1].find(card_id)
+	player_info[1].remove(card_index)
+	kept_card.b_can_keep = false
+	return kept_card
+
+
+
+
 
 func test_cur_player_cards():
 	print(a_players)
 	var cur_player_info = a_players[i_cur_player]
 	print(cur_player_info[1])
 
+
+
+
+func get_current_player_name():
+	return a_players[i_cur_player][0]
 
 
 
@@ -111,7 +129,31 @@ func advance_turn():
 	i_cur_player += 1
 	if i_cur_player >= a_players.size():
 		i_cur_player = 0
+	a_card_stack.clear()
 
+
+
+
+
+func on_card_click():
+	var card_data = null
+	
+	if a_card_stack.size() > 0:
+		a_card_stack.pop_back()
+		var card_stack_size = a_card_stack.size()
+		if card_stack_size > 0:
+			card_data = a_card_stack[card_stack_size-1]
+			card_data = d_cards.get(card_data)
+	
+	return card_data
+
+
+func get_player_cards(player_index):
+	var cur_player_info = a_players[player_index]
+	var card_data_list = []
+	for card_id in cur_player_info[1]:
+		card_data_list.append([card_id, d_cards.get(card_id)])
+	return card_data_list
 
 
 

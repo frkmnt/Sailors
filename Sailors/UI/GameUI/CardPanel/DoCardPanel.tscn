@@ -5,6 +5,7 @@
 [ext_resource path="res://UI/GameUI/CardPanel/DoCard.gd" type="Script" id=3]
 
 [node name="DoCardPanel" type="Panel"]
+self_modulate = Color( 0.180392, 0.984314, 0.0980392, 1 )
 margin_right = 1080.0
 margin_bottom = 1920.0
 script = ExtResource( 3 )

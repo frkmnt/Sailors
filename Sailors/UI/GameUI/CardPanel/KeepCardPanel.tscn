@@ -5,6 +5,7 @@
 [ext_resource path="res://Fonts/Custom_Fonts/cardLabel.tres" type="DynamicFont" id=3]
 
 [node name="KeepCardPanel" type="Panel"]
+modulate = Color( 0.819608, 0.784314, 0.27451, 1 )
 margin_right = 1080.0
 margin_bottom = 1920.0
 script = ExtResource( 1 )

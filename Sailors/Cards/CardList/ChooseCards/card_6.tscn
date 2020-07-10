@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Cards/CardTypes/ChooseCard/ChooseCardInfo.gd" type="Script" id=1]
+
+[node name="Card_6" type="Node"]
+script = ExtResource( 1 )
+i_card_id = 6
+s_option_a = "Bebe 2 por cada gordo presente"
+s_option_b = "Bebe 3 por cada anão"

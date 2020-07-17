@@ -23,3 +23,5 @@ func on_item_click(event):
 
 func open_panel():
 	r_parent_menu.on_item_click(i_index)
+
+

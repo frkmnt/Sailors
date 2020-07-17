@@ -23,6 +23,7 @@ var p_choose_card_panel
 var p_do_card_panel
 var p_keep_card_panel
 var p_stash_panel
+var p_parrot_panel
 
 #==== Variables ====#
 var v_design_size = Vector2(1080, 1920)
@@ -54,6 +55,7 @@ func initialize_card_panels():
 	p_stash_panel = get_child(0).get_child(5)
 	var game_info = r_overseer.c_game_info.a_players
 	p_stash_panel.initialize(self, game_info)
+	
 	
 	r_player_label = get_child(0).get_child(0)
 
@@ -97,6 +99,9 @@ func set_card_panel(card_data):
 			enable_panel(p_do_card_panel, card_data)
 		2: # keep
 			enable_panel(p_keep_card_panel, card_data)
+		2: # parrot
+			r_current_panel = p_parrot_panel
+			p_parrot_panel.visible = true
 
 
 func enable_panel(new_panel, card_data):
@@ -125,4 +130,8 @@ func on_saved_cards_click():
 func set_player_name(player_name):
 	r_player_label.text = player_name
 
+
+func set_parrot_panel(player_names):
+	p_parrot_panel.initialize(self, player_names)
+	p_parrot_panel.visible = true
 

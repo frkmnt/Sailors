@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/GameUI/UiManager.gd" type="Script" id=1]
 [ext_resource path="res://UI/GameUI/CardPanel/DoCardPanel.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://UI/GameUI/CardPanel/ChooseCardPanel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Fonts/Custom_Fonts/cardLabel.tres" type="DynamicFont" id=5]
 [ext_resource path="res://UI/GameUI/CardStash/SavedCardsUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://UI/GameUI/ParrotCards/ChooseParrotPanel.tscn" type="PackedScene" id=7]
 
 [node name="UiManager" type="Control"]
 self_modulate = Color( 0.85098, 0.34902, 0.34902, 1 )
@@ -96,6 +97,9 @@ margin_bottom = 1930.0
 rect_scale = Vector2( 0.5, 0.5 )
 
 [node name="SavedCardsPanel" parent="MainPanel" instance=ExtResource( 6 )]
+visible = false
+
+[node name="ChoosePlayerPanel" parent="MainPanel" instance=ExtResource( 7 )]
 visible = false
 [connection signal="pressed" from="MainPanel/DeckButton" to="." method="on_deck_click"]
 [connection signal="pressed" from="MainPanel/CardStashButton" to="." method="on_saved_cards_click"]

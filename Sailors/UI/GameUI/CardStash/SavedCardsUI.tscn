@@ -5,7 +5,7 @@
 [ext_resource path="res://Fonts/Custom_Fonts/cardLabel.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Fonts/Custom_Fonts/cardTitleLabel.tres" type="DynamicFont" id=4]
 
-[node name="SavedCardsPanel" type="Panel"]
+[node name="ChoosePlayerPanel" type="Panel"]
 margin_right = 1080.0
 margin_bottom = 1920.0
 script = ExtResource( 2 )

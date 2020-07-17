@@ -4,8 +4,8 @@ extends Node
 #==== Variables ====#
 
 var a_deck = []
+var i_parrot_cards = 500
 var a_players = []
-
 
 
 #==== Bootstrap ====#

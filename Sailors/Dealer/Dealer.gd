@@ -8,7 +8,7 @@ var d_cards = {} # dictionary of: unique_card_id: card_data (not the atual card_
 var a_deck = [] # array of: card_index: card_id
 var i_unique_cards = 0
 
-var a_players = [] # array of: [player_name, kept_cards[]]
+var a_players = [] # array of: [player_name, kept_cards[], parrots[]]
 var i_remaining_players
 var i_cur_player = 0
 
@@ -20,17 +20,20 @@ var a_card_stack = []
 func initialize(overseer, game_info): 
 	randomize()
 	r_overseer = overseer
-	initialize_card_info(game_info.a_deck)
+	initialize_card_info(game_info)
 	initialize_players(game_info.a_players)
 
 
 # initializes the card references and the deck 
-func initialize_card_info(cards_by_type_list):
+func initialize_card_info(game_info):
+	var cards_by_type_list = game_info.a_deck
 	var cards_info_list
 	
 	for card_type_id in range(cards_by_type_list.size()): # iterate types of cards
 		cards_info_list = cards_by_type_list[card_type_id]
 		load_all_cards_of_type(card_type_id, cards_info_list)
+	
+
 
 
 func load_all_cards_of_type(card_type_id, cards_info_list):
@@ -68,7 +71,7 @@ func add_card_references_to_deck(card_qty):
 
 func initialize_players(player_list):
 	for player_index in range(player_list.size()):
-		a_players.append([player_list[player_index], []])
+		a_players.append([player_list[player_index], [], []])
 
 
 
@@ -121,6 +124,25 @@ func play_kept_card(player_id, card_id):
 	player_info[1].remove(card_index)
 	kept_card.b_can_keep = false
 	return kept_card
+
+
+func get_available_parrots():
+	var player_list = []
+	var cur_player_info = a_players[i_cur_player]
+	for player_id in range(a_players):
+		if not player_id in cur_player_info[2]:
+			player_list.add(player_id)
+	return player_list
+
+
+func add_parrot_to_cur_player(player_index):
+	var cur_player_info = a_players[i_cur_player]
+	cur_player_info[2].append(player_index)
+	print("adding parrot")
+	print(cur_player_info[1])
+	print(i_cur_player)
+
+
 
 
 

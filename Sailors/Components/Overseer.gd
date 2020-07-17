@@ -70,3 +70,22 @@ func use_kept_card(player_id, card_id):
 	if card_data != null:
 		c_ui_manager.set_card_panel(card_data)
 
+
+func get_a_parrot():
+	var player_names = c_dealer.get_available_parrots()
+	if player_names.size() == 0:
+		clicked_card()
+	else:
+		c_ui_manager.set_parrot_panel(player_names)
+
+
+func add_parrot_to_cur_player(player_index):
+	c_dealer.add_parrot_to_cur_player(player_index)
+	clicked_card()
+
+
+
+
+
+
+

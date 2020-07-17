@@ -18,6 +18,9 @@ func initialize(parent_panel, card_list, player_id):
 	i_player_id = player_id
 
 
+
+#==== UI Interface ====#
+
 func left_card_button():
 	var new_card_index = cur_card_index -1
 	if new_card_index == -1:
@@ -29,14 +32,18 @@ func left_card_button():
 
 
 func right_card_button():
-	pass
-
+	var new_card_index = cur_card_index -1
+	if new_card_index == -1:
+		cur_card_index = a_card_list.size()-1
+	else:
+		cur_card_index -= 1
+	var card_info = a_card_list[cur_card_index]
+	r_description_label.text = card_info[1].get_card_as_string()
 
 
 func back_button():
 	r_parent_panel.visible = true
 	visible = false
-	
 
 
 func use_saved_card():

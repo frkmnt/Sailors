@@ -75,9 +75,16 @@ func initialize_players(player_list):
 
 
 
-#==== Logic ====#
+#==== Game Logic ====#
 
-func draw_card():
+func next_turn():
+	i_cur_player += 1
+	if i_cur_player >= a_players.size():
+		i_cur_player = 0
+	a_card_stack.clear()
+
+
+func draw_card(): # on deck click
 	var deck_size = a_deck.size()
 	if deck_size > 0:
 		var random_card_index = floor(rand_range(0, deck_size))
@@ -87,6 +94,16 @@ func draw_card():
 		var card_info = d_cards.get(card_reference_index)
 		return card_info
 
+
+func on_card_click(): # on card clik
+	var card_data = null
+	if a_card_stack.size() > 0:
+		a_card_stack.pop_back()
+		var card_stack_size = a_card_stack.size()
+		if card_stack_size > 0:
+			card_data = a_card_stack[card_stack_size-1]
+			card_data = d_cards.get(card_data)
+	return card_data
 
 
 func keep_current_card():
@@ -109,43 +126,12 @@ func play_kept_card(player_id, card_id):
 
 
 
-func test_cur_player_cards():
-	print(a_players)
-	var cur_player_info = a_players[i_cur_player]
-	print(cur_player_info[1])
 
-
+#==== Player Handling ====#
 
 
 func get_current_player_name():
 	return a_players[i_cur_player][0]
-
-
-
-
-#==== Turn Handling ====#
-
-func advance_turn():
-	i_cur_player += 1
-	if i_cur_player >= a_players.size():
-		i_cur_player = 0
-	a_card_stack.clear()
-
-
-
-
-
-func on_card_click():
-	var card_data = null
-	
-	if a_card_stack.size() > 0:
-		a_card_stack.pop_back()
-		var card_stack_size = a_card_stack.size()
-		if card_stack_size > 0:
-			card_data = a_card_stack[card_stack_size-1]
-			card_data = d_cards.get(card_data)
-	
-	return card_data
 
 
 func get_player_cards(player_index):
@@ -154,6 +140,20 @@ func get_player_cards(player_index):
 	for card_id in cur_player_info[1]:
 		card_data_list.append([card_id, d_cards.get(card_id)])
 	return card_data_list
+
+
+
+
+
+
+#==== Testing ====#
+
+func test_cur_player_cards():
+	print(a_players)
+	var cur_player_info = a_players[i_cur_player]
+	print(cur_player_info[1])
+
+
 
 
 

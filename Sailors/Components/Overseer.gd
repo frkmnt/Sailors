@@ -39,13 +39,20 @@ func load_game_info():
 
 #==== Logic ====#
 
-func draw_card():
+func next_turn():
+	c_dealer.next_turn()
+	var cur_player_name = c_dealer.get_current_player_name()
+	c_ui_manager.set_player_name(cur_player_name) 
+	c_ui_manager.disable_current_panel()
+
+
+func draw_card(): # on deck click
 	var card_data = c_dealer.draw_card()
 	if card_data != null:
 		c_ui_manager.set_card_panel(card_data)
 
 
-func clicked_card():
+func clicked_card(): # on card click
 	var card_data = c_dealer.on_card_click()
 	if card_data == null:
 		next_turn()
@@ -53,21 +60,13 @@ func clicked_card():
 		c_ui_manager.set_card_panel(card_data)
 
 
-func next_turn():
-	c_dealer.advance_turn()
-	var cur_player_name = c_dealer.get_current_player_name()
-	c_ui_manager.set_player_name(cur_player_name) 
-	c_ui_manager.disable_current_panel()
-
-
-func use_saved_card(player_id, card_id):
-	var card_data = c_dealer.play_kept_card(player_id, card_id)
-	if card_data != null:
-		c_ui_manager.set_card_panel(card_data)
-
-
 func keep_card():
 	c_dealer.keep_current_card()
 	clicked_card()
 
+
+func use_kept_card(player_id, card_id):
+	var card_data = c_dealer.play_kept_card(player_id, card_id)
+	if card_data != null:
+		c_ui_manager.set_card_panel(card_data)
 

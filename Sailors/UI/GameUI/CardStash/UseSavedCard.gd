@@ -21,7 +21,7 @@ func initialize(parent_panel, card_list, player_id):
 
 #==== UI Interface ====#
 
-func left_card_button():
+func left_card_button(): # cycle card to the left
 	var new_card_index = cur_card_index -1
 	if new_card_index == -1:
 		cur_card_index = a_card_list.size()-1
@@ -31,7 +31,7 @@ func left_card_button():
 	r_description_label.text = card_info[1].get_card_as_string()
 
 
-func right_card_button():
+func right_card_button(): # cycle card to the right
 	var new_card_index = cur_card_index -1
 	if new_card_index == -1:
 		cur_card_index = a_card_list.size()-1
@@ -48,7 +48,7 @@ func back_button():
 
 func use_saved_card():
 	var card_info = a_card_list[cur_card_index]
-	r_parent_panel.r_ui_manager.r_overseer.use_saved_card(i_player_id, card_info[0])
+	r_parent_panel.r_ui_manager.r_overseer.use_kept_card(i_player_id, card_info[0])
 	r_parent_panel.visible = false
 	visible = false
 

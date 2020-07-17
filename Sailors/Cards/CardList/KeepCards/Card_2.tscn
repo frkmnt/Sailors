@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Cards/CardTypes/KeepCard/KeepCardData.gd" type="Script" id=1]
-
-[node name="Card_2" type="Node"]
-script = ExtResource( 1 )
-i_card_id = 2
-s_what_to_do = "Ao guardares a carta, escolhe um parceiro. Sempre que beberes, ele bebe. Ao jogares esta carta, ele bebe 3 goles do copo."

@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Cards/CardTypes/DoCard/DoCardData.gd" type="Script" id=1]
-
-[node name="Card_3" type="Node"]
-script = ExtResource( 1 )
-i_card_id = 3
-s_what_to_do = "Faz uma cascata a começar em ti. Todos os jogadores que tiverem o copo vazio, enchem tudo."

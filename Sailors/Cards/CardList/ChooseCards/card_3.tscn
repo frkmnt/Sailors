@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Cards/CardTypes/ChooseCard/ChooseCardInfo.gd" type="Script" id=1]
-
-[node name="Card_3" type="Node"]
-script = ExtResource( 1 )
-i_card_id = 3
-s_option_a = "Enche o copo"
-s_option_b = "Bebe o copo de penalti"

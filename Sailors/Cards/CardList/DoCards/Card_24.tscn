@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Cards/CardTypes/DoCard/DoCardData.gd" type="Script" id=1]
-
-[node name="Card_24" type="Node"]
-script = ExtResource( 1 )
-i_card_id = 24
-s_what_to_do = "Se o Tiago estiver, damos-lhe todos um abraço e ele bebe 1 gole. Se não estiver, bebe 3 e fica muito triste. Se chorares, só bebes 2."

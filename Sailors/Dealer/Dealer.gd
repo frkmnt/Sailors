@@ -39,20 +39,24 @@ func initialize_card_info(game_info):
 
 func load_all_cards_of_type(card_type_id, cards_info_list):
 	var directory = Directory.new()
+	var prefix = ""
 	match card_type_id:
 		0: # choose card
 			directory.open("res://Cards/CardList/ChooseCards")
+			prefix = "choose"
 		1: # do card
 			directory.open("res://Cards/CardList/DoCards")
+			prefix = "do"
 		2: # keep card
 			directory.open("res://Cards/CardList/KeepCards")
+			prefix = "keep"
 	
 	var card_info_set
 	var file_name
 	var card_data
 	for card_info_index in range(cards_info_list.size()): # iterate the info_set of all cards of a certain type
 		card_info_set = cards_info_list[card_info_index] # info set: [card_id, card_qty]
-		file_name = "card_" + String(card_info_set[0]) # card_id
+		file_name = prefix + "_card_" + String(card_info_set[0]) # card_id
 		# TODO check if path exists
 		card_data = load(directory.get_current_dir() + "/" + file_name + ".tscn")
 		add_card_to_dictionary(card_data.instance())

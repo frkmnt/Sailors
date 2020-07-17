@@ -25,7 +25,7 @@ func load_game(player_names):
 
 
 func start_game(game_info):
-	var overseer = load("res://Components/Overseer.tscn").instance()
+	var overseer = preload("res://Components/Overseer.tscn").instance()
 	overseer.initialize(game_info)
 	add_child(overseer)
 	c_main_menu_panel.visible = false

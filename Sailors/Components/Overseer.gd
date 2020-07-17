@@ -12,9 +12,15 @@ var c_deck # contains references to card instances
 
 #==== Bootstrap ====#
 
+# Called when created by the game manager
+func initialize(player_list): 
+	c_game_info = load("res://Components/GameInfo.tscn").instance()
+	c_game_info.initialize(player_list)
+	add_child(c_game_info)
+
+
+
 func _ready():
-	load_game_info()
-	
 	c_ui_manager = load("res://UI/GameUI/UiManager.tscn").instance()
 	add_child(c_ui_manager)
 	c_ui_manager.initialize(self)
@@ -29,10 +35,6 @@ func _ready():
 
 
 
-func load_game_info():
-	c_game_info = load("res://Components/GameInfo.tscn").instance()
-	c_game_info.initialize()
-	add_child(c_game_info)
 
 
 

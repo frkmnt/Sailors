@@ -10,9 +10,9 @@ var a_players = []
 
 #==== Bootstrap ====#
 
-func initialize():
+func initialize(player_names):
 	initialize_deck()
-	initialize_players(null)
+	initialize_players(player_names)
 
 
 func initialize_deck():
@@ -41,31 +41,10 @@ func initialize_deck():
 	]) 
 
 
-func initialize_players(player_names):
-	a_players.append("thc")
 
-	a_players.append("piu")
-	
-	a_players.append("xias")
-	
-	a_players.append("zeca")
-	
-	a_players.append("94")
-	
-	a_players.append("gil")
-	
-	a_players.append("carapau")
-	
-	a_players.append("vitente")
-	
-	
-	
-	
-	
-#	var cur_name
-#	for cur_name in range(player_names.size()):
-#		a_players.append(cur_name)
-	
+func initialize_players(player_names):
+	for player_name in player_names:
+		a_players.append(player_name)
 
 
 

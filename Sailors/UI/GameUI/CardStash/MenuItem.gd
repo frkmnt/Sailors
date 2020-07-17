@@ -2,12 +2,10 @@ extends Node
 
 var r_parent_menu
 
-var i_index
 
-func initialize(parent_menu, name, index):
+func initialize(parent_menu, name):
 	r_parent_menu = parent_menu
 	$PlayerName.text = name
-	i_index = index
 
 
 
@@ -22,6 +20,6 @@ func on_item_click(event):
 
 
 func open_panel():
-	r_parent_menu.on_item_click(i_index)
+	r_parent_menu.on_item_click(get_index())
 
 

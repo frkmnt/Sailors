@@ -14,10 +14,8 @@ var a_player_names = []
 
 func initialize(ui_manager, player_names):
 	r_ui_manager = ui_manager
-	var index = 0
 	for player_name in player_names:
-		add_name_to_list(index, player_name)
-		index += 1
+		add_name_to_list(player_name)
 	r_use_saved_card_panel = $UseSavedCardPanel
 
 
@@ -29,9 +27,9 @@ func clear_name_list():
 		child.queue_free()
 
 
-func add_name_to_list(index, name):
+func add_name_to_list(name):
 	var item_instance = _list_item_prefab.instance()
-	item_instance.initialize(self, name, index)
+	item_instance.initialize(self, name)
 	$ScrollContainer/List.add_child(item_instance)
 	item_instance.rect_min_size = Vector2(1080, 148)
 

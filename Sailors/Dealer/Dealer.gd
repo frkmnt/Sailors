@@ -13,6 +13,7 @@ var i_remaining_players
 var i_cur_player = 0
 
 var a_card_stack = []
+var b_has_drawn = false # true if the current player has drawn
 
 
 #==== Bootstrap ====#
@@ -85,6 +86,7 @@ func next_turn():
 	if i_cur_player >= a_players.size():
 		i_cur_player = 0
 	a_card_stack.clear()
+	b_has_drawn = false
 
 
 func draw_card(): # on deck click
@@ -95,6 +97,7 @@ func draw_card(): # on deck click
 		a_card_stack.append(card_reference_index)
 		a_deck.remove(random_card_index)
 		var card_info = d_cards.get(card_reference_index)
+		b_has_drawn = true
 		return card_info
 
 
@@ -117,12 +120,14 @@ func keep_current_card():
 
 
 func play_kept_card(player_id, card_id):
-	var kept_card = d_cards.get(card_id)
-	a_card_stack.append(card_id)
-	var player_info = a_players[player_id]
-	var card_index = player_info[1].find(card_id)
-	player_info[1].remove(card_index)
-	kept_card.b_can_keep = false
+	var kept_card = null
+	if b_has_drawn == true:
+		kept_card = d_cards.get(card_id)
+		a_card_stack.append(card_id)
+		var player_info = a_players[player_id]
+		var card_index = player_info[1].find(card_id)
+		player_info[1].remove(card_index)
+		kept_card.b_can_keep = false
 	return kept_card
 
 

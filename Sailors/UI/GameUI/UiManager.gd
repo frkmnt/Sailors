@@ -116,7 +116,8 @@ func disable_current_panel():
 
 
 func on_deck_click():
-	r_overseer.draw_card()
+	if not r_overseer.c_dealer.b_has_drawn:
+		r_overseer.draw_card()
 
 
 func on_card_click():

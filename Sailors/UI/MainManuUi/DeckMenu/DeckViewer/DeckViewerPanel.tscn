@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Fonts/Custom_Fonts/cardLabel.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/MainManuUi/DeckMenu/DeckViewer/DeckViewer.gd" type="Script" id=2]
+
+[node name="DeckViewerPanel" type="Panel"]
+margin_top = 1.0
+margin_right = 1080.0
+margin_bottom = 1921.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+margin_right = 1080.0
+margin_bottom = 267.0
+custom_fonts/font = ExtResource( 1 )
+text = "Choose a Deck:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="."]
+margin_right = 154.0
+margin_bottom = 154.0
+custom_fonts/font = ExtResource( 1 )
+text = "B"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_top = 265.0
+margin_right = 1080.0
+margin_bottom = 1920.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="List" type="VBoxContainer" parent="ScrollContainer"]
+
+[node name="AddDeckButton" type="Button" parent="."]
+margin_left = 440.0
+margin_top = 1680.0
+margin_right = 640.0
+margin_bottom = 1880.0
+custom_fonts/font = ExtResource( 1 )
+text = "+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="BackButton" to="." method="back_button"]
+[connection signal="pressed" from="AddDeckButton" to="." method="add_deck_button"]

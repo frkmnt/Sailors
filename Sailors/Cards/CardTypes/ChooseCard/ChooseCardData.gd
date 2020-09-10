@@ -10,4 +10,4 @@ export (String) var s_option_b
 
 
 func get_card_as_string():
-	return s_option_a + ", OU " + s_option_b
+	return s_option_a + ", OR " + s_option_b

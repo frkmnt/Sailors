@@ -81,5 +81,6 @@ margin_bottom = 154.0
 custom_fonts/font = ExtResource( 2 )
 text = "B"
 [connection signal="pressed" from="LeftCardButton" to="." method="left_card_button"]
+[connection signal="pressed" from="RightCardButton" to="." method="right_card_button"]
 [connection signal="pressed" from="ConfirmCardButton" to="." method="use_saved_card"]
 [connection signal="pressed" from="BackButton" to="." method="back_button"]

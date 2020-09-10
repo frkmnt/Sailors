@@ -94,15 +94,16 @@ func next_turn():
 
 
 func draw_card(): # on deck click
+	var card_info
 	var deck_size = a_deck.size()
 	if deck_size > 0:
 		var random_card_index = floor(rand_range(0, deck_size))
 		var card_reference_index = a_deck[random_card_index]
 		a_card_stack.append(card_reference_index)
 		a_deck.remove(random_card_index)
-		var card_info = d_cards.get(card_reference_index)
+		card_info = d_cards.get(card_reference_index)
 		b_has_drawn = true
-		return card_info
+	return card_info
 
 
 func on_card_click(): # on card clik

@@ -32,7 +32,8 @@ func set_data_on_card(card_data):
 #==== Logic ====#
 
 func advance():
-	r_overseer.c_ui_manager.on_card_click()
+#	r_overseer.c_ui_manager.on_card_click()
+	r_overseer.keep_card()
 
 func keep_card():
 	r_overseer.keep_card()

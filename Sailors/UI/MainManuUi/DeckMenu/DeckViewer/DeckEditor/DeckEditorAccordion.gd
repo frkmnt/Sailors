@@ -15,7 +15,7 @@ export var spacing = 40
 func initialize(name):
 	$ShowContentButton.text = name
 	c_content_panel = $ContentPanel
-	c_content_panel.initialize()
+	c_content_panel.initialize(self)
 
 
 
@@ -34,8 +34,28 @@ func _draw():
 #==== Logic ====#
 
 
-func add_card(description, qty):
-	c_content_panel.add_card(description, qty)
+func add_card(card_id, description, qty):
+	c_content_panel.add_card(card_id, description, qty)
+
+
+func clear_cards_from_accordion():
+	c_content_panel.remove_all_cards()
+
+func remove_card(index):
+#	c_content_panel.get_child(0).get_child(index).queue_free()
+	c_content_panel.remove_card(index)
+
+
+func get_all_card_ids():
+	var card_id_list = []
+	for child in c_content_panel.get_child(0).get_children():
+		card_id_list.append([child.i_card_id, int(child.c_quantity.text)])
+	return card_id_list
+
+
+
+
+
 
 
 

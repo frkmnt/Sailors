@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Cards/CardTypes/DoCard/DoCardData.gd" type="Script" id=1]
-
-[node name="Card_28" type="Node"]
-script = ExtResource( 1 )
-i_card_id = 28
-s_what_to_do = "Bebe o que quiseres do teu copo. Toda a gente tem de fazer o mesmo."

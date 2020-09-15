@@ -38,28 +38,29 @@ func initialize_card_info(game_info):
 
 
 func load_all_cards_of_type(card_type_id, cards_info_list):
+	print(cards_info_list)
+	var card_prefab
 	var directory = Directory.new()
-	var prefix = ""
 	match card_type_id:
 		0: # choose card
 			directory.open("res://Cards/CardList/ChooseCards")
-			prefix = "choose"
 		1: # do card
 			directory.open("res://Cards/CardList/DoCards")
-			prefix = "do"
 		2: # keep card
 			directory.open("res://Cards/CardList/KeepCards")
-			prefix = "keep"
 	
 	var card_info_set
 	var file_name
 	var card_data
+	var path 
 	for card_info_index in range(cards_info_list.size()): # iterate the info_set of all cards of a certain type
 		card_info_set = cards_info_list[card_info_index] # info set: [card_id, card_qty]
-		file_name = prefix + "_card_" + String(card_info_set[0]) # card_id
 		# TODO check if path exists
-		card_data = load(directory.get_current_dir() + "/" + file_name + ".tscn")
-		add_card_to_dictionary(card_data.instance())
+		path = directory.get_current_dir() + "/" + String(card_info_set[0])
+		print(path)
+		print(card_info_set)
+		card_data = load_card(card_type_id, path)
+		add_card_to_dictionary(card_data)
 		add_card_references_to_deck(card_info_set[1]) # card qty
 		i_unique_cards += 1
 
@@ -72,6 +73,27 @@ func add_card_references_to_deck(card_qty):
 	for card_index in range(card_qty):
 		a_deck.append(i_unique_cards)
 
+
+func load_card(type_id, card_data_path):
+	var file = File.new()
+	file.open(card_data_path, File.READ)
+	var content = parse_json(file.get_line())
+	file.close()
+	
+	var card_prefab
+	match type_id:
+		0:
+			card_prefab = preload("res://Cards/CardTypes/ChooseCard/ChooseCardData.tscn").instance()
+			card_prefab.s_option_a = content.get("card_info")[0]
+			card_prefab.s_option_b = content.get("card_info")[1]
+		1:
+			card_prefab = preload("res://Cards/CardTypes/DoCard/DoCardData.tscn").instance()
+			card_prefab.s_what_to_do = content.get("card_info")
+		2:
+			card_prefab = preload("res://Cards/CardTypes/KeepCard/KeepCardData.tscn").instance()
+			card_prefab.s_what_to_do = content.get("card_info")
+		
+	return card_prefab
 
 
 func initialize_players(player_list):
@@ -121,7 +143,6 @@ func keep_current_card():
 	var cur_card_ref = a_card_stack[0]
 	var cur_player_info = a_players[i_cur_player]
 	cur_player_info[1].append(cur_card_ref)
-	print(cur_player_info[1])
 
 
 func play_kept_card(player_id, card_id):
@@ -148,9 +169,6 @@ func get_available_parrots():
 func add_parrot_to_cur_player(player_index):
 	var cur_player_info = a_players[i_cur_player]
 	cur_player_info[2].append(player_index)
-	print("adding parrot")
-	print(cur_player_info[1])
-	print(i_cur_player)
 
 
 
@@ -181,9 +199,7 @@ func get_player_cards(player_index):
 #==== Testing ====#
 
 func test_cur_player_cards():
-	print(a_players)
 	var cur_player_info = a_players[i_cur_player]
-	print(cur_player_info[1])
 
 
 

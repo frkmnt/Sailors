@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Cards/CardTypes/DoCard/DoCardData.gd" type="Script" id=1]
-
-[node name="Card_17" type="Node"]
-script = ExtResource( 1 )
-i_card_id = 17
-s_what_to_do = "Diz um tema. Toda a gente diz algo relacionado a esse tema, até alguém falhar. Esse jogador bebe 1 gole por cada volta à mesa. "

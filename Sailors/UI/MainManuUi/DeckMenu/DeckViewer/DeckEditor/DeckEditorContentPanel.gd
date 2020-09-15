@@ -6,6 +6,7 @@ const c_vbox_item_prefab = preload("res://UI/MainManuUi/DeckMenu/DeckViewer/Deck
 
 #==== References ====#
 var r_vbox_container
+var r_parent_menu
 
 
 #==== Variables ====#
@@ -16,7 +17,8 @@ var i_card_count = 0
 
 #==== Bootstrap ====#
 
-func initialize():
+func initialize(parent_menu):
+	r_parent_menu = parent_menu
 	r_vbox_container = $VBoxContainer
 
 
@@ -47,11 +49,24 @@ func _process(delta):
 
 #==== Logic ====#
 
-func add_card(description, qty):
+func add_card(card_id, description, qty):
 	var item_instance = c_vbox_item_prefab.instance()
-	item_instance.initialize(self, description, qty)
-	print(description)
+	item_instance.initialize(self, card_id, description, qty)
 	r_vbox_container.add_child(item_instance)
 	i_card_count += 1
+
+
+
+
+
+func remove_card(index):
+	i_card_count -= 1
+	r_vbox_container.get_child(index).queue_free()
+
+
+func remove_all_cards():
+	for child in r_vbox_container.get_children():
+		i_card_count -= 1
+		child.queue_free()
 
 

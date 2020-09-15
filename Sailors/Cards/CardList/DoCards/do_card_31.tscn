@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Cards/CardTypes/DoCard/DoCardData.gd" type="Script" id=1]
-
-[node name="Card_31" type="Node"]
-script = ExtResource( 1 )
-i_card_id = 31
-s_what_to_do = "Se o Xias estiver, tens de ser arremessado por ele. Se fores o Xias, lamento, são as regras."

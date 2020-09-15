@@ -69,7 +69,6 @@ func focus_entered():
 
 
 func focus_exited():
-	print("why")
 	if text.length() == 0:
 		text = s_original_text
 	close_virtual_keyboard()

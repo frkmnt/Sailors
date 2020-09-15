@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Cards/CardTypes/DoCard/DoCardData.gd" type="Script" id=1]
-
-[node name="Card_35" type="Node"]
-script = ExtResource( 1 )
-i_card_id = 35
-s_what_to_do = "Se a nazaré for puta bebe toda a gente 3 goles. Ps: a nazaré é puta"

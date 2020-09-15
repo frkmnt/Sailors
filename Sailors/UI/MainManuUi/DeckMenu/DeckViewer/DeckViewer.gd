@@ -21,7 +21,6 @@ func initialize(parent_panel):
 	r_parent_panel = parent_panel
 	r_vbox_container = $ScrollContainer/List
 	initialize_decks()
-	r_deck_editor = parent_panel.c_deck_editor
 
 
 func initialize_decks():
@@ -31,7 +30,6 @@ func initialize_decks():
 		var file_name = directory.get_next()
 		var deck_instance
 		while file_name != "":
-			print(file_name)
 			if directory.current_is_dir():
 				print("Found directory: " + file_name)
 			else:
@@ -51,11 +49,11 @@ func initialize_decks():
 
 func new_deck():
 	var deck_instance = p_deck.instance()
+	deck_instance.initialize_deck()
 	deck_instance.s_name = "Deck_" + String(d_deck.size()+1)
 	save_deck(deck_instance)
 	create_vbox_item(deck_instance)
 	d_deck[deck_instance.s_name] = deck_instance
-
 
 func delete_deck(): # called from the list item
 	pass
@@ -69,7 +67,11 @@ func save_deck(deck):
 		deck_save_file.open(deck_path, File.WRITE)
 		deck_save_file.store_line(to_json(deck.get_deck_as_dictionary()))
 	else:
-		print("deck with same name already exists")
+		print("deck with same name already exists, overriding")
+		deck_save_file.open(deck_path, File.WRITE)
+		deck_save_file.store_line(to_json(deck.get_deck_as_dictionary()))
+	
+	d_deck[deck.s_name] = deck
 
 
 func load_deck(deck_path):
@@ -78,17 +80,17 @@ func load_deck(deck_path):
 	if not deck_save_file.file_exists(deck_path):
 		return # Error! We don't have a save to load.
 	
-	# Load the file line by line and process that dictionary to restore
-	# the object it represents.
+	# Load the file line by line and process that dictionary
 	deck_save_file.open(deck_path, File.READ)
 	while deck_save_file.get_position() < deck_save_file.get_len():
 		# Get the saved dictionary from the next line in the save file
 		var deck_data = parse_json(deck_save_file.get_line())
 		deck_instance = p_deck.instance()
 		deck_instance.s_name = deck_data["deck_name"]
-		deck_instance.a_deck = deck_data["deck_cards"]
+		deck_instance.d_deck = deck_data["deck_cards"]
 	
 	deck_save_file.close()
+	print(deck_instance.d_deck)
 	return deck_instance
 
 
@@ -113,10 +115,11 @@ func back_button():
 func add_deck_button():
 	new_deck()
 
-func item_clicked(deck_name):
-	print(d_deck[deck_name].a_deck)
-	r_deck_editor.initialize_panel_with_deck(d_deck[deck_name])
-	r_deck_editor.visible = true
+func item_clicked(deck):
+	var deck_path = "res://Cards/Decks/DeckList/" + deck.s_name
+	var loaded_deck = load_deck(deck_path)
+	r_deck_editor.initialize_panel_with_deck(loaded_deck)
 	self.visible = false
+	r_deck_editor.visible = true
 
 

@@ -36,7 +36,6 @@ func add_name_to_list(name):
 
 func on_item_click(player_index):
 	var card_list = r_ui_manager.r_overseer.c_dealer.get_player_cards(player_index)
-	print(card_list.size())
 	if card_list.size() > 0:
 		r_use_saved_card_panel.initialize(self, card_list, player_index)
 		r_use_saved_card_panel.visible = true

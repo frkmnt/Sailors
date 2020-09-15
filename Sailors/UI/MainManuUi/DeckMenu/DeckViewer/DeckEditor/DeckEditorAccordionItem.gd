@@ -10,13 +10,13 @@ var c_quantity
 
 #==== Variables ====#
 var i_total_cards
-
+var i_card_id
 
 
 
 #==== Bootstrap ====#
 
-func initialize(parent_menu, description, qty):
+func initialize(parent_menu, card_id, description, qty):
 	r_parent_menu = parent_menu
 	c_description = $CardDescription
 	c_description.text = description
@@ -25,6 +25,7 @@ func initialize(parent_menu, description, qty):
 	c_quantity = $CardQuantity
 	c_quantity.text = String(qty)
 	
+	i_card_id = card_id
 
 
 
@@ -34,16 +35,13 @@ func initialize(parent_menu, description, qty):
 func increase_card_qty_button():
 	i_total_cards += 1
 	$CardQuantity.text = String(i_total_cards)
-	r_parent_menu.on_card_qty_increase(get_index(), i_total_cards)
 	
 
 
 func decrease_card_qty_button():
 	i_total_cards -= 1
 	$CardQuantity.text = String(i_total_cards)
-	if i_total_cards > 0:
-		r_parent_menu.on_card_qty_decrease(get_index(), i_total_cards)
-	else:
+	if i_total_cards < 0:
 		r_parent_menu.remove_card(get_index())
 
 

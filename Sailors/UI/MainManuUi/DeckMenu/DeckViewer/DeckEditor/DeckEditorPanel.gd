@@ -63,11 +63,11 @@ func add_cards_to_accordion(type_id, cards):
 		var card_data_directory
 		match type_id:
 			0:
-				card_data_directory = "res://Cards/CardList/ChooseCards/"
+				card_data_directory = "user://"
 			1:
-				card_data_directory = "res://Cards/CardList/DoCards/"
+				card_data_directory = "user://"
 			2:
-				card_data_directory = "res://Cards/CardList/KeepCards/"
+				card_data_directory = "user://"
 	
 		if cards.size() > 0:
 			var card_data

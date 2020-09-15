@@ -38,16 +38,15 @@ func initialize_card_info(game_info):
 
 
 func load_all_cards_of_type(card_type_id, cards_info_list):
-	print(cards_info_list)
 	var card_prefab
 	var directory = Directory.new()
 	match card_type_id:
 		0: # choose card
-			directory.open("res://Cards/CardList/ChooseCards")
+			directory.open("user://")
 		1: # do card
-			directory.open("res://Cards/CardList/DoCards")
+			directory.open("user://")
 		2: # keep card
-			directory.open("res://Cards/CardList/KeepCards")
+			directory.open("user://")
 	
 	var card_info_set
 	var file_name
@@ -57,8 +56,6 @@ func load_all_cards_of_type(card_type_id, cards_info_list):
 		card_info_set = cards_info_list[card_info_index] # info set: [card_id, card_qty]
 		# TODO check if path exists
 		path = directory.get_current_dir() + "/" + String(card_info_set[0])
-		print(path)
-		print(card_info_set)
 		card_data = load_card(card_type_id, path)
 		add_card_to_dictionary(card_data)
 		add_card_references_to_deck(card_info_set[1]) # card qty

@@ -28,7 +28,7 @@ func load_game(player_names, deck):
 
 func start_game(player_names):
 	var game_info = load("res://Components/GameInfo.tscn").instance()
-	var overseer = preload("res://Components/Overseer.tscn").instance()
+	var overseer = load("res://Components/Overseer.tscn").instance()
 	game_info.a_players = player_names
 	game_info.a_deck = get_deck_temp()
 	overseer.initialize(game_info)

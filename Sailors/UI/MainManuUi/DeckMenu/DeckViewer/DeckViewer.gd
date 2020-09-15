@@ -3,7 +3,7 @@ extends Panel
 #==== Components ====#
 const p_list_item = preload("res://UI/MainManuUi/DeckMenu/DeckViewer/DeckViewerListItem.tscn")
 const p_deck = preload("res://Cards/Decks/Deck.tscn")
-const s_deck_directory = "res://Cards/Decks/DeckList/"
+const s_deck_directory = "user://"
 
 #==== References ====#
 var r_parent_panel
@@ -90,7 +90,6 @@ func load_deck(deck_path):
 		deck_instance.d_deck = deck_data["deck_cards"]
 	
 	deck_save_file.close()
-	print(deck_instance.d_deck)
 	return deck_instance
 
 
@@ -116,7 +115,7 @@ func add_deck_button():
 	new_deck()
 
 func item_clicked(deck):
-	var deck_path = "res://Cards/Decks/DeckList/" + deck.s_name
+	var deck_path = "user://" + deck.s_name
 	var loaded_deck = load_deck(deck_path)
 	r_deck_editor.initialize_panel_with_deck(loaded_deck)
 	self.visible = false

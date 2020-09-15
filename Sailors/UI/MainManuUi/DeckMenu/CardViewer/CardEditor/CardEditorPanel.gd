@@ -70,18 +70,19 @@ func on_confirm_card():
 			card_prefab = r_choose_card_prefab.instance()
 			card_prefab.s_option_a = c_choose_card_info_container.get_child(0).text
 			card_prefab.s_option_b = c_choose_card_info_container.get_child(1).text
-			card_path = "res://Cards/CardList/ChooseCards/" + card_prefab.get_card_hash_id()
+			card_path = "user://" + card_prefab.get_card_hash_id()
 			
 		1:
 			card_prefab = r_do_card_prefab.instance()
 			card_prefab.s_what_to_do = c_normal_card_info_container.get_child(0).text
-			card_path = "res://Cards/CardList/DoCards/" + card_prefab.get_card_hash_id()
+			card_path = "user://" + card_prefab.get_card_hash_id()
 		2:
 			card_prefab = r_keep_card_prefab.instance()
 			card_prefab.s_what_to_do = c_normal_card_info_container.get_child(0).text
-			card_path = "res://Cards/CardList/KeepCards/" + card_prefab.get_card_hash_id()
+			card_path = "user://" + card_prefab.get_card_hash_id()
 	
 	var was_successful = save_card(card_prefab, card_path)
+	clear_all_info()
 	if was_successful:
 		r_parent_panel.add_card(c_dropdown.selected, card_prefab)
 		visible = false
@@ -94,6 +95,7 @@ func save_card(card_prefab, card_path):
 		card_save_file.open(card_path, File.WRITE)
 		card_save_file.store_line(to_json(card_prefab.get_card_as_dictionary()))
 		was_successful = true
+		print("saved card at ", card_path)
 	else:
 		print("An equal card already exists.")
 		

@@ -10,12 +10,23 @@ var c_main_menu_panel
 
 func _ready():
 	initialize_main_menu()
+	initialize_folders()
 
 
 func initialize_main_menu():
 	c_main_menu_panel = get_child(0)
 	c_main_menu_panel.initialize(self)
 
+
+func initialize_folders():
+	var directory = Directory.new()
+	if not directory.dir_exists("user://Cards/"):
+		directory.make_dir("user://Cards/")
+		# TODO add cards
+	
+	if not directory.dir_exists("user://Decks/"):
+		directory.make_dir("user://Decks/")
+		# TODO add cards
 
 
 #==== Logic ====#

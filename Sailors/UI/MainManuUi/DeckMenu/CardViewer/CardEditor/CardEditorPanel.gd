@@ -70,16 +70,16 @@ func on_confirm_card():
 			card_prefab = r_choose_card_prefab.instance()
 			card_prefab.s_option_a = c_choose_card_info_container.get_child(0).text
 			card_prefab.s_option_b = c_choose_card_info_container.get_child(1).text
-			card_path = "user://" + card_prefab.get_card_hash_id()
+			card_path = "user://Cards/" + card_prefab.get_card_hash_id()
 			
 		1:
 			card_prefab = r_do_card_prefab.instance()
 			card_prefab.s_what_to_do = c_normal_card_info_container.get_child(0).text
-			card_path = "user://" + card_prefab.get_card_hash_id()
+			card_path = "user://Cards/" + card_prefab.get_card_hash_id()
 		2:
 			card_prefab = r_keep_card_prefab.instance()
 			card_prefab.s_what_to_do = c_normal_card_info_container.get_child(0).text
-			card_path = "user://" + card_prefab.get_card_hash_id()
+			card_path = "user://Cards/" + card_prefab.get_card_hash_id()
 	
 	var was_successful = save_card(card_prefab, card_path)
 	clear_all_info()

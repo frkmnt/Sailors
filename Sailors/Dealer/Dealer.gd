@@ -40,13 +40,7 @@ func initialize_card_info(game_info):
 func load_all_cards_of_type(card_type_id, cards_info_list):
 	var card_prefab
 	var directory = Directory.new()
-	match card_type_id:
-		0: # choose card
-			directory.open("user://")
-		1: # do card
-			directory.open("user://")
-		2: # keep card
-			directory.open("user://")
+	directory.open("user://Cards/")
 	
 	var card_info_set
 	var file_name

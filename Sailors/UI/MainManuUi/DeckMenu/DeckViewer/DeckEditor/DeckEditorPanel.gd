@@ -60,21 +60,13 @@ func create_accordion(accordion_name):
 func add_cards_to_accordion(type_id, cards):
 	if cards:
 		var item_instance = $ScrollContainer/List.get_child(type_id)
-		var card_data_directory
-		match type_id:
-			0:
-				card_data_directory = "user://"
-			1:
-				card_data_directory = "user://"
-			2:
-				card_data_directory = "user://"
-	
+		
 		if cards.size() > 0:
 			var card_data
 			var card_data_path 
 			
 			for card_id in cards.keys():
-				card_data_path = card_data_directory + String(card_id) 
+				card_data_path = "user://Cards/" + String(card_id) 
 				card_data = load_card_data(card_data_path, type_id)
 				item_instance.add_card(card_id, card_data.get_card_as_string(), cards[card_id])
 

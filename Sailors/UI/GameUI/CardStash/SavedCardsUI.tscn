@@ -25,14 +25,17 @@ __meta__ = {
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-margin_top = 650.0
+margin_top = 300.0
 margin_right = 1080.0
-margin_bottom = 1899.0
+margin_bottom = 1890.0
+follow_focus = true
+scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="List" type="VBoxContainer" parent="ScrollContainer"]
+mouse_filter = 2
 
 [node name="BackButton" type="Button" parent="."]
 margin_right = 150.0

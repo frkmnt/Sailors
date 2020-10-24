@@ -117,6 +117,9 @@ func create_deck_from_current_cards():
 	return deck_prefab
 
 
+func close_all_accordions():
+	for accordion in c_accordion_container.get_children():
+		accordion.c_content_panel.shrink_panel()
 
 
 #==== UI Interaction ====#
@@ -133,6 +136,6 @@ func on_back_button_click():
 	r_parent_menu.save_deck(deck)
 	
 	clear_info_from_panel()
-	# TODO clear all cards from the accordions
+	close_all_accordions()
 
 

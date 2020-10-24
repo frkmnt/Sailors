@@ -1,10 +1,25 @@
 extends Node
 
+#==== Prefabs ====#
+
+var p_choose_card
+var p_do_card
+var p_keep_card
+
+
+
 
 #==== Bootstrap ====#
 
 func initialize():
+	initialize_prefabs()
 	initialize_folders()
+
+
+func initialize_prefabs():
+	p_choose_card = load("res://Cards/CardTypes/ChooseCard/ChooseCardData.tscn")
+	p_do_card = load("res://Cards/CardTypes/DoCard/DoCardData.tscn")
+	p_keep_card = load("res://Cards/CardTypes/KeepCard/KeepCardData.tscn")
 
 
 func initialize_folders():
@@ -31,297 +46,141 @@ func load_initial_decks():
 #==== Logic ====#
 
 func load_standard_deck(deck_prefab):
-	deck_prefab.s_name = "Deck_1"
+	deck_prefab.s_name = "Standard Deck"
 	var card_type_list = []
 	
-	var choose_card_prefab = load("res://Cards/CardTypes/ChooseCard/ChooseCardData.tscn").instance()
-	
-	choose_card_prefab.s_option_a = "Enche o copo"
-	choose_card_prefab.s_option_b = "penalti"
-	card_type_list.append([choose_card_prefab.get_card_hash_id(), 1])
-	save_card(choose_card_prefab)
-	
-	choose_card_prefab.s_option_a = "Bebe 2 penaltis e manda alguem beber 3 penaltis"
-	choose_card_prefab.s_option_b = "Bebe um penalti e manda alguém beber de penalti"
-	card_type_list.append([choose_card_prefab.get_card_hash_id(), 1])
-	save_card(choose_card_prefab)
-	
-	choose_card_prefab.s_option_a = "Bebe 2 por cada gordo presente"
-	choose_card_prefab.s_option_b = "Bebe 3 por cada anão"
-	card_type_list.append([choose_card_prefab.get_card_hash_id(), 1])
-	save_card(choose_card_prefab)
-	
-	choose_card_prefab.s_option_a = "Canta a fuzleira"
-	choose_card_prefab.s_option_b = "Bebe 5"
-	card_type_list.append([choose_card_prefab.get_card_hash_id(), 1])
-	save_card(choose_card_prefab)
-	
-	choose_card_prefab.s_option_a = "Manda 1 bongada"
-	choose_card_prefab.s_option_b = "Manda 1 shot de bagaço"
-	card_type_list.append([choose_card_prefab.get_card_hash_id(), 1])
-	save_card(choose_card_prefab)
-	
-	choose_card_prefab.s_option_a = "Faz um cacete"
-	choose_card_prefab.s_option_b = "Manda um shot de uma bebida branca"
-	card_type_list.append([choose_card_prefab.get_card_hash_id(), 1])
-	save_card(choose_card_prefab)
-	
-	choose_card_prefab.s_option_a = "Limpa o lixo da mesa"
-	choose_card_prefab.s_option_b = "Manda um penalti"
-	card_type_list.append([choose_card_prefab.get_card_hash_id(), 1])
-	save_card(choose_card_prefab)
-	
-	choose_card_prefab.s_option_a = "Faz uma serenata a alguém à tua escolha"
-	choose_card_prefab.s_option_b = "Bebe um penalti"
-	card_type_list.append([choose_card_prefab.get_card_hash_id(), 1])
-	save_card(choose_card_prefab)
-	
-	choose_card_prefab.s_option_a = "Obriga o piu a beber mais de 2 minis"
-	choose_card_prefab.s_option_b = "Obriga alguem a mandar o copo de penalti"
-	card_type_list.append([choose_card_prefab.get_card_hash_id(), 1])
-	save_card(choose_card_prefab)
-	
-	choose_card_prefab.s_option_a = "Bebe 1"
-	choose_card_prefab.s_option_b = "Bebe 2"
-	card_type_list.append([choose_card_prefab.get_card_hash_id(), 1])
-	save_card(choose_card_prefab)
-	
-	choose_card_prefab.s_option_a = "Faz um cacetinho"
-	choose_card_prefab.s_option_b = "Manda um pénalti"
-	card_type_list.append([choose_card_prefab.get_card_hash_id(), 1])
-	save_card(choose_card_prefab)
-	
-	choose_card_prefab.s_option_a = "Bebe 1"
-	choose_card_prefab.s_option_b = "Bebe 3 e manda alguém beber 3"
-	card_type_list.append([choose_card_prefab.get_card_hash_id(), 1])
-	save_card(choose_card_prefab)
+	var choose_card_prefab = p_choose_card.instance()
+	var choose_card_prefab_data = [
+		[ 	"Enche o copo", 
+			"Penalti" ],
+			
+		[	"Bebe 2 penaltis e manda alguem beber 3 penaltis", 
+			"Bebe um penalti e manda alguém beber de penalti" ],
+			
+		[ 	"Bebe 2 por cada gordo presente", 
+			"Bebe 3 por cada anão"],
+			
+		[ 	"Canta a fuzleira", 
+			"Bebe 5"],
+			
+		[ 	"Manda 1 bongada", 
+			"Manda 1 shot de bagaço"],
+			
+		[ 	"Faz um cacete", 
+			"Manda um shot de uma bebida branca"],
+			
+		[ 	"Canta a fuzleira", 
+			"Bebe 5"],
+			
+		[ 	"Limpa o lixo da mesa", 
+			"Manda um penalti"],
+			
+		[ 	"Faz uma serenata a alguém à tua escolha", 
+			"Bebe um penalti"],
+			
+		[ 	"Obriga o piu a beber mais de 2 minis", 
+			"Obriga alguem a mandar o copo de penalti"],
+			
+		[ 	"Bebe 1", 
+			"Bebe 2"],
+			
+		[ 	"Faz um cacetinho", 
+			"Manda um pénalti"],
+			
+		[ 	"Bebe 1", 
+			"Bebe 3 e manda alguém beber 3"]
+	]
+
+	for label in choose_card_prefab_data:
+		choose_card_prefab.s_option_a = label[0]
+		choose_card_prefab.s_option_b = label[1]
+		card_type_list.append([choose_card_prefab.get_card_hash_id(), 1])
+		save_card(choose_card_prefab)
 	
 	deck_prefab = add_type_cards_to_deck(deck_prefab, 0, card_type_list)
 	card_type_list = []
 	
 	
-	var do_card_prefab = load("res://Cards/CardTypes/DoCard/DoCardData.tscn").instance()
+	var do_card_prefab = p_do_card.instance()
+	var do_card_prefab_data = [
+		"Bebe 1 gole.",
+		"Bebe 2 goles.",
+		"Manda Pénalti.",
+		"Troca de copo com alguém.",
+		"Faz uma cascata a começar em ti. Todos os jogadores que tiverem o copo vazio, enchem tudo.",
+		"Estas imune às regras do jogo durante um turno. Bebe 3 goles para ativar este efeito.",
+		"Bebe 3 e força alguém a beber 3.",
+		"Roda todos os copos para a direita ou para a esquerda.",
+		"Enche o copo e bebe 2 goles.",
+		"Se tiveres o copo a menos de metade, bebe de penalti o que falta. Se não, bebe 2 goles.",
+		"Manda uma pescoçada.",
+		"Todos os homens bebem.",
+		"Cria uma regra nova.",
+		"Mete uma bebida diferente da que tens no copo.",
+		"Tu e os 2 jogadores ao teu lado bebem 3 goles.",
+		"O último jogador a pôr a mão na mesa bebe o copo de penalti.",
+		"Diz um tema. Toda a gente diz algo relacionado a esse tema, até alguém falhar. Esse jogador bebe 1 gole por cada volta à mesa.",
+		"O jogador mais novo e o jogador mais velho bebem 2 goles.",
+		"Escolhe uma palavra. Todos os jogadores estão proibídos de a dizer até ao fim do jogo.",
+		"Até tirares uma carta do baralho, tens de estar em pé.",
+		"Toda a gente conta uma piada seca. Até rodar a mesa, quem se rir tem de beber 3 goles.",
+		"Força o jogador com menos bebida no copo a mandar uma pescoçada.",
+		"Faz um senhor Bob.",
+		"Se o Tiago estiver, damos-lhe todos um abraço e ele bebe 1 gole. Se não estiver, bebe 3 e fica muito triste. Se chorares, só bebes 2.",
+		"Bebe de pénalti e manda uma chapada a alguém à tua escolha.",
+		"Tens de por a prima do piu de 4. Se não conseguires, bebe 3 goles.",
+		"És o capitão. Manda beber quem tu quiseres.",
+		"Bebe o que quiseres do teu copo. Toda a gente tem de fazer o mesmo.",
+		"Toda a gente manda um penalti.",
+		"Se o mota vier, tem de beber 1 gole por cada jogador.",
+		"Se o Xias estiver, tens de ser arremessado por ele. Se fores o Xias, lamento, são as regras.",
+		"Se o bolacha não estiver em jogo leva um cachaço de toda a gente do jogo, senao saltamos todos de alegria e bebemos um golo.",
+		"A partir de agora sempre que um soldade for abatido, toda a gente se levanta e faz um brinde ao melhor tom possivel.",
+		"Enche o copo de toda a gente ate cima e puxa uma imaculada ao melhor tom possivel.",
+		"Se a nazaré for puta bebe toda a gente 3 goles. Ps: a nazaré é puta.",
+		"Se alguma gaja nao estiver na cozinha o piu bebe o copo de penalti. Se nao estiverem gajas presentes o piu bebe so dois goles. Se o piu n#ao estiver manda tu o teu copo de penalty.",
+		"Se o burgos ja estiver a ser chato ele be 2 goles, senao bebe 3 goles. Se o burgos nao estiver bebe tu 5 goles.",
+		"Se houver muralhas, temos de tombar tudo esta ronda. Ah pois é, é o José."
+	]
 	
-	do_card_prefab.s_what_to_do = "Bebe 1 gole."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Bebe 2 goles."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Manda Pénalti."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Troca de copo com alguém."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Faz uma cascata a começar em ti. Todos os jogadores que tiverem o copo vazio, enchem tudo."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Estas imune às regras do jogo durante um turno. Bebe 3 goles para ativar este efeito."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Bebe 3 e força alguém a beber 3."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Roda todos os copos para a direita ou para a esquerda."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Enche o copo e bebe 2 goles."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Se tiveres o copo a menos de metade, bebe de penalti o que falta. Se não, bebe 2 goles."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Manda uma pescoçada."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Todos os homens bebem."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Cria uma regra nova."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Mete uma bebida diferente da que tens no copo."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Tu e os 2 jogadores ao teu lado bebem 3 goles."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "O último jogador a pôr a mão na mesa bebe o copo de penalti."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Diz um tema. Toda a gente diz algo relacionado a esse tema, até alguém falhar. Esse jogador bebe 1 gole por cada volta à mesa. "
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "O jogador mais novo e o jogador mais velho bebem 2 goles."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Escolhe uma palavra. Todos os jogadores estão proibídos de a dizer até ao fim do jogo."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Até tirares uma carta do baralho, tens de estar em pé."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Toda a gente conta uma piada seca. Até rodar a mesa, quem se rir tem de beber 3 goles."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Força o jogador com menos bebida no copo a mandar uma pescoçada."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Faz um senhor Bob."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Se o Tiago estiver, damos-lhe todos um abraço e ele bebe 1 gole. Se não estiver, bebe 3 e fica muito triste. Se chorares, só bebes 2."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Bebe de pénalti e manda uma chapada a alguém à tua escolha."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Tens de por a prima do piu de 4. Se não conseguires, bebe 3 goles."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "És o capitão. Manda beber quem tu quiseres."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Bebe o que quiseres do teu copo. Toda a gente tem de fazer o mesmo."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Toda a gente manda um penalti."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Se o mota vier, tem de beber 1 gole por cada jogador."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Se o Xias estiver, tens de ser arremessado por ele. Se fores o Xias, lamento, são as regras."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Se o bolacha não estiver em jogo leva um cachaço de toda a gente do jogo, senao saltamos todos de alegria e bebemos um golo."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "A partir de agora sempre que um soldade for abatido, toda a gente se levanta e faz um brinde ao melhor tom possivel."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Enche o copo de toda a gente ate cima e puxa uma imaculada ao melhor tom possivel."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Se a nazaré for puta bebe toda a gente 3 goles. Ps: a nazaré é puta."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Se alguma gaja nao estiver na cozinha o piu bebe o copo de penalti. Se nao estiverem gajas presentes o piu bebe so dois goles. Se o piu n#ao estiver manda tu o teu copo de penalty."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Se o burgos ja estiver a ser chato ele be 2 goles, senao bebe 3 goles. Se o burgos nao estiver bebe tu 5 goles."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
-	
-	do_card_prefab.s_what_to_do = "Se houver muralhas, temos de tombar tudo esta ronda. Ah pois é, é o José."
-	card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
-	save_card(do_card_prefab)
+	for label in do_card_prefab_data:
+		do_card_prefab.s_what_to_do = label
+		card_type_list.append([do_card_prefab.get_card_hash_id(), 1])
+		save_card(do_card_prefab)
 	
 	deck_prefab = add_type_cards_to_deck(deck_prefab, 1, card_type_list)
 	card_type_list = []
 	
 	
 	var keep_card_prefab = load("res://Cards/CardTypes/KeepCard/KeepCardData.tscn").instance()
+	var keep_card_prefab_data = [
+		"Bebe tudo o que tens no copo e anula um efeito",
+		"Ao guardares a carta, escolhe um parceiro. Sempre que beberes, ele bebe. Ao jogares esta carta, ele bebe 3 goles do copo.",
+		"Se beberes um penalti, manda alguem beber 2 penaltis",
+		"Guarda o numero de goles que acumulares até jogares esta carta. Manda beber esse número de goles (max 10)",
+		"Toda a gente troca de copo para a direita.",
+		"Quem te mandar fazer algo, também tem de fazer.",
+		"Quando alguem te mandar fazer alguma coisa, usa o copo de alguem para o fazer.",
+		"Quando alguém rodar um cacete, és chapa dux.",
+		"Quando for preciso ir buscar bebidas, escolhe quem vai.",
+		"Quando alguém for a casa de banho, mina a bebida dele.",
+		"Podes minar a bebida de alguem.",
+		"Cancela a vez de jogar de uma pessoa, joga tu com a carta dele.",
+		"Podes ativar isto em alguem que tenha um copo vazio, ele é o barista ate ao fim do jogo.",
+		"Se o bolacha der trigger, ativa esta carta e manda alguem beber de penalti."
+	]
 	
-	keep_card_prefab.s_what_to_do = "Bebe tudo o que tens no copo e anula um efeito"
-	card_type_list.append([keep_card_prefab.get_card_hash_id(), 1])
-	save_card(keep_card_prefab)
-	
-	keep_card_prefab.s_what_to_do = "Ao guardares a carta, escolhe um parceiro. Sempre que beberes, ele bebe. Ao jogares esta carta, ele bebe 3 goles do copo."
-	card_type_list.append([keep_card_prefab.get_card_hash_id(), 1])
-	save_card(keep_card_prefab)
-	
-	keep_card_prefab.s_what_to_do = "Se beberes um penalti, manda alguem beber 2 penaltis"
-	card_type_list.append([keep_card_prefab.get_card_hash_id(), 1])
-	save_card(keep_card_prefab)
-	
-	keep_card_prefab.s_what_to_do = "Guarda o numero de goles que acumulares até jogares esta carta. Manda beber esse número de goles (max 10)"
-	card_type_list.append([keep_card_prefab.get_card_hash_id(), 1])
-	save_card(keep_card_prefab)
-	
-	keep_card_prefab.s_what_to_do = "Toda a gente troca de copo para a direita."
-	card_type_list.append([keep_card_prefab.get_card_hash_id(), 1])
-	save_card(keep_card_prefab)
-	
-	keep_card_prefab.s_what_to_do = "Quem te mandar fazer algo, também tem de fazer."
-	card_type_list.append([keep_card_prefab.get_card_hash_id(), 1])
-	save_card(keep_card_prefab)
-	
-	keep_card_prefab.s_what_to_do = "Quando alguem te mandar fazer alguma coisa, usa o copo de alguem para o fazer."
-	card_type_list.append([keep_card_prefab.get_card_hash_id(), 1])
-	save_card(keep_card_prefab)
-	
-	keep_card_prefab.s_what_to_do = "Quando alguém rodar um cacete, és chapa dux."
-	card_type_list.append([keep_card_prefab.get_card_hash_id(), 1])
-	save_card(keep_card_prefab)
-	
-	keep_card_prefab.s_what_to_do = "Quando for preciso ir buscar bebidas, escolhe quem vai."
-	card_type_list.append([keep_card_prefab.get_card_hash_id(), 1])
-	save_card(keep_card_prefab)
-	
-	keep_card_prefab.s_what_to_do = "Quando alguém for a casa de banho, mina a bebida dele."
-	card_type_list.append([keep_card_prefab.get_card_hash_id(), 1])
-	save_card(keep_card_prefab)
-	
-	keep_card_prefab.s_what_to_do = "Podes minar a bebida de alguem."
-	card_type_list.append([keep_card_prefab.get_card_hash_id(), 1])
-	save_card(keep_card_prefab)
-	
-	keep_card_prefab.s_what_to_do = "Cancela a vez de jogar de uma pessoa, joga tu com a carta dele."
-	card_type_list.append([keep_card_prefab.get_card_hash_id(), 1])
-	save_card(keep_card_prefab)
-	
-	keep_card_prefab.s_what_to_do = "Podes ativar isto em alguem que tenha um copo vazio, ele é o barista ate ao fim do jogo."
-	card_type_list.append([keep_card_prefab.get_card_hash_id(), 1])
-	save_card(keep_card_prefab)
-	
-	keep_card_prefab.s_what_to_do = "Se o bolacha der trigger, ativa esta carta e manda alguem beber de penalti."
-	card_type_list.append([keep_card_prefab.get_card_hash_id(), 1])
-	save_card(keep_card_prefab)
+	for label in keep_card_prefab_data:
+		keep_card_prefab.s_what_to_do = label
+		card_type_list.append([keep_card_prefab.get_card_hash_id(), 1])
+		save_card(keep_card_prefab)
 	
 	deck_prefab = add_type_cards_to_deck(deck_prefab, 2, card_type_list)
 	card_type_list = []
 	
 	save_deck(deck_prefab)
 
-
+#TODO finish decks
 func load_easy_deck():
 	pass
 

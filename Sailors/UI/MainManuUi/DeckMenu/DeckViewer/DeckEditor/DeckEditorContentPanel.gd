@@ -9,10 +9,16 @@ var r_vbox_container
 var r_parent_menu
 
 
+#==== Constants ====#
+const i_card_panel_height = 620
+const i_card_gap_height = 50
+
+
 #==== Variables ====#
 var is_expanded = false
 var last_rect_size = Vector2.ZERO
 var i_card_count = 0
+var i_scaling_speed = 0.002
 
 
 #==== Bootstrap ====#
@@ -20,6 +26,7 @@ var i_card_count = 0
 func initialize(parent_menu):
 	r_parent_menu = parent_menu
 	r_vbox_container = $VBoxContainer
+	shrink_panel()
 
 
 
@@ -37,13 +44,18 @@ func _process(delta):
 		rect_size.y = rect_min_size.y
 	
 	if is_expanded: # resize to target size
-		rect_size.y = lerp(rect_size.y, (i_card_count*620) + (i_card_count*50), 0.1)
+		rect_size.y = lerp(rect_size.y, i_card_count * (i_card_panel_height + i_card_gap_height), ease(i_scaling_speed, 1))
 	else:
-		rect_size.y = lerp(rect_size.y, rect_min_size.y, 0.1)
+		rect_size.y = lerp(rect_size.y, rect_min_size.y, ease(i_scaling_speed, 1))
 	
 	if last_rect_size != rect_size: # update layout
 		get_parent().update()
 		last_rect_size = rect_size
+		i_scaling_speed += 0.002
+		if i_scaling_speed > 0.3:
+			i_scaling_speed = 0.3
+	else:
+		i_scaling_speed = 0.002
 
 
 
@@ -56,9 +68,6 @@ func add_card(card_id, description, qty):
 	i_card_count += 1
 
 
-
-
-
 func remove_card(index):
 	i_card_count -= 1
 	r_vbox_container.get_child(index).queue_free()
@@ -68,5 +77,10 @@ func remove_all_cards():
 	for child in r_vbox_container.get_children():
 		i_card_count -= 1
 		child.queue_free()
+
+
+func shrink_panel():
+	is_expanded = false
+	rect_size.y = rect_min_size.y
 
 

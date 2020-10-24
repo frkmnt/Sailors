@@ -26,10 +26,18 @@ func initialize(parent_panel):
 	
 	c_deck_viewer.r_deck_editor = c_deck_editor 
 	
+	c_card_viewer = $CardViewerPanel
+	c_card_viewer.initialize(self)
+	
 	c_card_editor = $CardEditorPanel
-	c_card_editor.initialize(c_deck_editor)
+	c_card_editor.initialize(1)
 	
 	c_deck_editor.r_card_editor = c_card_editor
+	
+	c_card_viewer.r_card_editor = c_card_editor
+	
+	c_card_editor.r_card_viewer = c_card_viewer
+	c_card_editor.r_deck_editor = c_card_viewer
 	
 
 
@@ -41,7 +49,7 @@ func view_decks_button():
 
 
 func view_cards_button():
-	pass
+	c_card_viewer.visible = true
 
 
 func back_button():

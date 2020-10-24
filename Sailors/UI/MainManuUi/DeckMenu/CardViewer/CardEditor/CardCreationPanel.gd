@@ -5,10 +5,7 @@ extends Panel
 var r_choose_card_prefab = preload("res://Cards/CardTypes/ChooseCard/ChooseCardData.tscn")
 var r_do_card_prefab = preload("res://Cards/CardTypes/DoCard/DoCardData.tscn")
 var r_keep_card_prefab = preload("res://Cards/CardTypes/KeepCard/KeepCardData.tscn")
-
-var r_deck_editor
-var r_card_viewer 
-var r_parent_panel 
+var r_parent_panel # variable
 
 
 #==== Components ====#
@@ -25,8 +22,8 @@ var c_choose_card_info_container
 
 #==== Bootstrap ====#
 
-func initialize(parent_panel_id):
-	set_parent_panel(parent_panel_id)
+func initialize(parent_panel):
+	r_parent_panel = parent_panel
 	
 	c_dropdown = $DeckTypeDropDown
 	c_dropdown.add_item("Choose Card", 0)
@@ -38,8 +35,10 @@ func initialize(parent_panel_id):
 	c_choose_card_info_container = $ChooseCardInfoContainer
 
 
-func set_parent_panel(parent_panel_id):
-	r_parent_panel = parent_panel_id
+func set_parent_panel(parent_panel):
+	r_parent_panel = parent_panel
+
+
 
 
 
@@ -85,7 +84,8 @@ func on_confirm_card():
 	var was_successful = save_card(card_prefab, card_path)
 	clear_all_info()
 	if was_successful:
-		add_card_to_parent_menu(card_prefab)
+		r_parent_panel.add_card(c_dropdown.selected, card_prefab)
+		visible = false
 
 
 func save_card(card_prefab, card_path):
@@ -102,16 +102,6 @@ func save_card(card_prefab, card_path):
 	return was_successful
 
 
-func add_card_to_parent_menu(card_prefab):
-	if r_parent_panel == 0:
-		r_deck_editor.add_card(c_dropdown.selected, card_prefab)
-
-	r_card_viewer.add_card(c_dropdown.selected, card_prefab)
-	
-	visible = false
-	make_parent_panel_visible()
-
-#==== UI Management ====#
 
 func on_drop_down_changed(item_index):
 	if item_index == 0: # choose card
@@ -125,14 +115,8 @@ func on_drop_down_changed(item_index):
 
 func on_back_button_pressed():
 	visible = false
-	make_parent_panel_visible()
 
 
-func make_parent_panel_visible():
-	if r_parent_panel == 0:
-		r_deck_editor.visible = true
-	else:
-		r_card_viewer.visible = true
 
 
 

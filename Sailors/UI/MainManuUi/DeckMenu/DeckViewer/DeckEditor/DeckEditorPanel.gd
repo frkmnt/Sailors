@@ -3,6 +3,7 @@ extends Panel
 #==== References ====#
 var r_parent_menu
 var r_card_editor
+var r_card_viewer
 
 #==== Components ====#
 var c_deck_editor_accordion = preload("res://UI/MainManuUi/DeckMenu/DeckViewer/DeckEditor/DeckEditorAccordion.tscn")
@@ -125,7 +126,7 @@ func close_all_accordions():
 #==== UI Interaction ====#
 
 func on_add_card_button_click():
-	r_card_editor.on_open(self)
+	r_card_editor.set_parent_panel(0)
 	r_card_editor.visible = true
 
 

@@ -1,13 +1,14 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Fonts/Custom_Fonts/cardLabel.tres" type="DynamicFont" id=1]
-[ext_resource path="res://UI/MainManuUi/DeckMenu/DeckViewer/DeckEditor/DeckEditorAccordionItem.gd" type="Script" id=2]
+[ext_resource path="res://UI/MainManuUi/DeckMenu/CardViewer/CardEditorAccordionItem.gd" type="Script" id=2]
 
-
-
-[node name="DeckEditorListItem" type="Panel"]
+[node name="CardViewerAccordionItem" type="Panel"]
+self_modulate = Color( 0.690196, 0.690196, 0.690196, 1 )
 margin_right = 1080.0
 margin_bottom = 620.0
+rect_min_size = Vector2( 1080, 620 )
+mouse_filter = 2
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

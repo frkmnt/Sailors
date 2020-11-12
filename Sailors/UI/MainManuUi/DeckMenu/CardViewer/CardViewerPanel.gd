@@ -3,6 +3,8 @@ extends Panel
 #==== References ====#
 var r_parent_panel
 var r_card_editor
+var r_card_type_panel
+var r_deck_menu
 
 #==== Components ====#
 var c_card_viewer_accordion = preload("res://UI/MainManuUi/DeckMenu/CardViewer/CardViewerAccordion.tscn")
@@ -13,6 +15,7 @@ var c_do_card_prefab = preload("res://Cards/CardTypes/DoCard/DoCardData.tscn")
 var c_keep_card_prefab = preload("res://Cards/CardTypes/KeepCard/KeepCardData.tscn")
 
 var c_accordion_container 
+var c_add_card_button
 
 #==== Variables ====#
 var a_cards = []
@@ -22,17 +25,18 @@ var a_cards = []
 #==== Bootstrap ====#
 
 func initialize(parent_menu):
-	set_parent_panel(parent_menu)
+	r_deck_menu = parent_menu
+	r_parent_panel = parent_menu
 	c_accordion_container = $ScrollContainer/List
-	create_accordion("Choose Cards") 
-	create_accordion("Do Cards")
-	create_accordion("Keep Cards")
+	c_add_card_button = $AddCardButton
+	create_accordion("Choose Cards", 0) 
+	create_accordion("Do Cards", 1)
+	create_accordion("Keep Cards", 2)
 	initialize_cards()
 
 
-func set_parent_panel(parent_panel):
-	r_parent_panel = parent_panel
 
+#==== Card Handling ====#
 
 func initialize_cards():
 	var path = "user://Cards/"
@@ -52,9 +56,9 @@ func initialize_cards():
 		print("An error occurred when trying to access the path.")
 
 
-func create_accordion(accordion_name):
+func create_accordion(accordion_name, accordion_id):
 	var item_instance = c_card_viewer_accordion.instance()
-	item_instance.initialize(accordion_name)
+	item_instance.initialize(self, accordion_name, accordion_id)
 	$ScrollContainer/List.add_child(item_instance)
 	item_instance.rect_min_size = Vector2(1080, 620)
 
@@ -90,32 +94,45 @@ func load_card_data(card_data_path):
 
 
 
-
-
-
 #==== Logic ==== #
 
 func add_card(card_type_id, card_data):
 	var accordion = c_accordion_container.get_child(card_type_id)
 	accordion.add_card(card_data.get_card_hash_id(), card_data.get_card_as_string())
 
-#
-#func add_card_to_card_viewer(card_type_id, card_data):
-#	var accordion = c_accordion_container.get_child(card_type_id)
-#	accordion.add_card(card_data.get_card_hash_id(), card_data.get_card_as_string())
+
+func set_selection_mode():
+	r_parent_panel = r_card_type_panel
+	c_add_card_button.visible = false
+	for accordion in c_accordion_container.get_children():
+		accordion.set_selection_mode()
 
 
+func set_view_mode():
+	r_parent_panel = r_deck_menu
+	c_add_card_button.visible = true
+	for accordion in c_accordion_container.get_children():
+		accordion.set_view_mode()
 
 
+func delete_card(card_type_id, card_index):
+	var accordion = c_accordion_container.get_child(card_type_id)
 
+
+func select_card(card_type_id, card_index, card_description):
+	var accordion = c_accordion_container.get_child(card_type_id)
+	on_back_button_click()
 
 
 #==== UI Interaction ====#
 
 func on_add_card_button_click():
-	r_card_editor.set_parent_panel(1)
+	r_card_editor.set_parent_as_card_viewer_panel()
 	r_card_editor.visible = true
 	visible = false
+
+
+
 
 
 func on_back_button_click():

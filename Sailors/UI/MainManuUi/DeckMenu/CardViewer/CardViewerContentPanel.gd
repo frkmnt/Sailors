@@ -8,11 +8,11 @@ const c_vbox_item_prefab = preload("res://UI/MainManuUi/DeckMenu/CardViewer/Card
 var r_vbox_container
 var r_parent_menu
 
-
 #==== Variables ====#
 var is_expanded = false
 var last_rect_size = Vector2.ZERO
 var i_card_count = 0
+
 
 
 #==== Bootstrap ====#
@@ -23,11 +23,11 @@ func initialize(parent_menu):
 
 
 
-
 #==== Logic ====#
 
 func toggle_show_content():
 	is_expanded = !is_expanded
+
 
 
 #==== Tick ====#
@@ -59,14 +59,31 @@ func add_card(card_id, description):
 
 
 
-func remove_card(index):
+func delete_card(card_id, card_index):
 	i_card_count -= 1
-	r_vbox_container.get_child(index).queue_free()
+	r_vbox_container.get_child(card_index).queue_free()
+	r_parent_menu.delete_card(card_id)
+
+
+func select_card(card_id, card_description):
+	r_parent_menu.select_card(card_id, card_description)
 
 
 func remove_all_cards():
 	for child in r_vbox_container.get_children():
 		i_card_count -= 1
 		child.queue_free()
+
+
+func set_selection_mode():
+	for child in r_vbox_container.get_children():
+		child.queue_free()
+
+func set_view_mode():
+	for child in r_vbox_container.get_children():
+		child.queue_free()
+
+
+
 
 

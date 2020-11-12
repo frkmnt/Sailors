@@ -1,21 +1,25 @@
 extends Control
 
+#==== References ====#
+var r_parent_panel
+
 #==== Components ====#
 var c_content_panel
 
-
 #==== Variables ====#
-
 export var spacing = 40
+var i_accordion_id = 0
 
 
 
 #==== Bootstrap ====#
 
-func initialize(name):
+func initialize(parent_panel, name, accordion_id):
+	r_parent_panel = parent_panel
 	$ShowContentButton.text = name
 	c_content_panel = $ContentPanel
 	c_content_panel.initialize(self)
+	i_accordion_id = accordion_id
 
 
 
@@ -33,13 +37,16 @@ func _draw():
 
 #==== Logic ====#
 
-
 func add_card(card_id, description):
 	c_content_panel.add_card(card_id, description)
 
 
-func remove_card(index):
-	c_content_panel.remove_card(index)
+func delete_card(card_id):
+	r_parent_panel.delete_card(i_accordion_id, card_id)
+
+
+func select_card(card_id, card_description):
+	r_parent_panel.select_card(i_accordion_id, card_id, card_description)
 
 
 func get_all_card_ids():
@@ -49,7 +56,14 @@ func get_all_card_ids():
 	return card_id_list
 
 
+func set_selection_mode():
+	for child in c_content_panel.get_child(0).get_children():
+		child.set_selection_mode()
 
+
+func set_view_mode():
+	for child in c_content_panel.get_child(0).get_children():
+		child.set_view_mode()
 
 
 

@@ -2,7 +2,7 @@ extends Panel
 
 #==== References ====#
 var r_parent_menu
-var r_card_editor
+var r_card_editor_type
 var r_card_viewer
 
 #==== Components ====#
@@ -126,8 +126,8 @@ func close_all_accordions():
 #==== UI Interaction ====#
 
 func on_add_card_button_click():
-	r_card_editor.set_parent_panel(0)
-	r_card_editor.visible = true
+	r_card_editor_type.visible = true
+	self.visible = false
 
 
 func on_back_button_click():

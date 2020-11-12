@@ -6,28 +6,24 @@ var r_choose_card_prefab = preload("res://Cards/CardTypes/ChooseCard/ChooseCardD
 var r_do_card_prefab = preload("res://Cards/CardTypes/DoCard/DoCardData.tscn")
 var r_keep_card_prefab = preload("res://Cards/CardTypes/KeepCard/KeepCardData.tscn")
 
-var r_deck_editor
+var r_card_type_editor
 var r_card_viewer 
-var r_parent_panel 
-
+var r_deck_editor
 
 #==== Components ====#
-
 var c_back_button
 var c_dropdown
 var c_normal_card_info_container
 var c_choose_card_info_container
 
-
 #==== Variables ====#
-
+var i_parent_panel_id = 0
 
 
 #==== Bootstrap ====#
 
-func initialize(parent_panel_id):
-	set_parent_panel(parent_panel_id)
-	
+func initialize():
+	set_parent_as_card_type_panel()
 	c_dropdown = $DeckTypeDropDown
 	c_dropdown.add_item("Choose Card", 0)
 	c_dropdown.add_item("Do Card", 1)
@@ -36,18 +32,16 @@ func initialize(parent_panel_id):
 	c_back_button = $BackButton
 	c_normal_card_info_container = $NormalCardInfoContainer
 	c_choose_card_info_container = $ChooseCardInfoContainer
+	
+
+func set_parent_as_card_type_panel():
+	i_parent_panel_id = 0
 
 
-func set_parent_panel(parent_panel_id):
-	r_parent_panel = parent_panel_id
-
-
+func set_parent_as_card_viewer_panel():
+	i_parent_panel_id = 1
 
 #==== Logic ====#
-
-func create_card_object():
-	pass
-
 
 func clear_all_info():
 	c_normal_card_info_container.get_child(0).text = "Enter your custom card text here."
@@ -60,7 +54,7 @@ func clear_all_info():
 #==== UI Interaction ====#
 
 
-func on_confirm_card():
+func on_confirm_card(): #TODO factory
 	if c_dropdown.selected < 0:
 		pass
 	
@@ -103,7 +97,7 @@ func save_card(card_prefab, card_path):
 
 
 func add_card_to_parent_menu(card_prefab):
-	if r_parent_panel == 0:
+	if i_parent_panel_id == 0:
 		r_deck_editor.add_card(c_dropdown.selected, card_prefab)
 
 	r_card_viewer.add_card(c_dropdown.selected, card_prefab)
@@ -129,8 +123,8 @@ func on_back_button_pressed():
 
 
 func make_parent_panel_visible():
-	if r_parent_panel == 0:
-		r_deck_editor.visible = true
+	if i_parent_panel_id == 0:
+		r_card_type_editor.visible = true
 	else:
 		r_card_viewer.visible = true
 

@@ -34,7 +34,6 @@ func restore_previous_text():
 
 #==== UI Interaction ====#
 
-
 func _input(event):
 	if (event is InputEventMouseButton and event.button_index == BUTTON_LEFT):
 		b_mouse_button_down = event.pressed
@@ -51,14 +50,9 @@ func _input(event):
 			
 
 
-
 func is_click_inside_bounds(checkpos):
 	var gr=get_global_rect()
 	return checkpos.x>=gr.position.x and checkpos.y>=gr.position.y and checkpos.x<gr.end.x and checkpos.y<gr.end.y
-
-
-
-
 
 
 func focus_entered():
@@ -80,9 +74,6 @@ func focus_exited():
 func text_entered(new_text):
 	close_virtual_keyboard()
 	focus_exited()
-
-
-
 
 
 func close_virtual_keyboard():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/MainManuUi/DeckMenu/DeckViewer/DeckViewerPanel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI/MainManuUi/DeckMenu/DeckViewer/DeckEditor/DeckEditorPanel.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Fonts/Custom_Fonts/cardLabel.tres" type="DynamicFont" id=4]
 [ext_resource path="res://UI/MainManuUi/DeckMenu/CardEditorMenu.gd" type="Script" id=5]
 [ext_resource path="res://UI/MainManuUi/DeckMenu/CardViewer/CardViewerPanel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://UI/MainManuUi/DeckMenu/CardViewer/CardEditor/CardEditorTypePanel.tscn" type="PackedScene" id=7]
 
 [node name="CardEditorMenu" type="Panel"]
 margin_right = 1080.0
@@ -53,6 +54,9 @@ visible = false
 visible = false
 
 [node name="CardViewerPanel" parent="." instance=ExtResource( 6 )]
+visible = false
+
+[node name="CardEditorTypePanel" parent="." instance=ExtResource( 7 )]
 visible = false
 [connection signal="pressed" from="DeckViewerButton" to="." method="view_decks_button"]
 [connection signal="pressed" from="CardViewerButton" to="." method="view_cards_button"]

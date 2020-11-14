@@ -3,7 +3,6 @@ extends Panel
 #==== References ====#
 var r_parent_menu
 var r_card_editor_type
-var r_card_viewer
 
 #==== Components ====#
 var c_deck_editor_accordion = preload("res://UI/MainManuUi/DeckMenu/DeckViewer/DeckEditor/DeckEditorAccordion.tscn")
@@ -19,7 +18,7 @@ var c_accordion_container
 var c_title
 
 #==== Variables ====#
-var a_cards = []
+var a_cards = [] #TODO check if useless
 
 
 
@@ -59,6 +58,7 @@ func create_accordion(accordion_name):
 	item_instance.rect_min_size = Vector2(1080, 620)
 
 func add_cards_to_accordion(type_id, cards):
+	var corrupted_cards = [] # cards that have been deleted from the file system
 	if cards:
 		var item_instance = $ScrollContainer/List.get_child(type_id)
 		
@@ -69,29 +69,32 @@ func add_cards_to_accordion(type_id, cards):
 			for card_id in cards.keys():
 				card_data_path = "user://Cards/" + String(card_id) 
 				card_data = load_card_data(card_data_path, type_id)
-				item_instance.add_card(card_id, card_data.get_card_as_string(), cards[card_id])
+				if card_data != null:
+					item_instance.add_card(card_id, card_data.get_card_as_string(), cards[card_id])
+
 
 
 func load_card_data(card_data_path, type_id):
-	var file = File.new()
-	file.open(card_data_path, File.READ)
-	var content = parse_json(file.get_line())
-	file.close()
-	
 	var card_prefab
-	match type_id:
-		0:
-			card_prefab = c_choose_card_prefab.instance()
-			card_prefab.s_option_a = content.get("card_info")[0]
-			card_prefab.s_option_b = content.get("card_info")[1]
-		1:
-			card_prefab = c_do_card_prefab.instance()
-			card_prefab.s_what_to_do = content.get("card_info")
-		2:
-			card_prefab = c_keep_card_prefab.instance()
-			card_prefab.s_what_to_do = content.get("card_info")
-	
-	
+	var file = File.new()
+	if file.file_exists(card_data_path):
+		file.open(card_data_path, File.READ)
+		var content = parse_json(file.get_line())
+		file.close()
+		
+		match type_id:
+			0:
+				card_prefab = c_choose_card_prefab.instance()
+				card_prefab.s_option_a = content.get("card_info")[0]
+				card_prefab.s_option_b = content.get("card_info")[1]
+			1:
+				card_prefab = c_do_card_prefab.instance()
+				card_prefab.s_what_to_do = content.get("card_info")
+			2:
+				card_prefab = c_keep_card_prefab.instance()
+				card_prefab.s_what_to_do = content.get("card_info")
+		
+		
 	return card_prefab
 
 
@@ -101,6 +104,12 @@ func load_card_data(card_data_path, type_id):
 func add_card(card_type_id, card_data):
 	var accordion = c_accordion_container.get_child(card_type_id)
 	accordion.add_card(card_data.get_card_hash_id(), card_data.get_card_as_string(), 1)
+
+func add_card_with_data(card_type_id, card_id, card_text):
+	var accordion = c_accordion_container.get_child(card_type_id)
+	accordion.add_card(card_id, card_text, 1)
+
+
 
 
 func clear_info_from_panel():

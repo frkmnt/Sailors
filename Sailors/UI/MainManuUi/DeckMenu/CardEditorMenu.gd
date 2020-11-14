@@ -24,6 +24,7 @@ func initialize(parent_panel):
 	c_deck_editor.initialize(c_deck_viewer)
 	
 	c_deck_viewer.r_deck_editor = c_deck_editor 
+	c_deck_viewer.r_main_menu_panel = r_parent_menu
 	
 	c_card_viewer = $CardViewerPanel
 	c_card_viewer.initialize(self)
@@ -34,8 +35,9 @@ func initialize(parent_panel):
 	c_card_editor_type = $CardEditorTypePanel
 	c_card_editor_type.initialize(c_deck_editor)
 	
+	
+	
 	c_deck_editor.r_card_editor_type = c_card_editor_type
-	c_deck_editor.r_card_viewer = c_card_viewer
 	
 	c_card_viewer.r_card_editor = c_card_editor
 	c_card_viewer.r_card_type_panel = c_card_editor_type
@@ -53,7 +55,7 @@ func initialize(parent_panel):
 
 func view_decks_button():
 	c_deck_viewer.visible = true
-
+	c_deck_viewer.set_edit_mode()
 
 func view_cards_button():
 	c_card_viewer.set_view_mode()

@@ -36,6 +36,7 @@ __meta__ = {
 margin_top = 265.0
 margin_right = 1080.0
 margin_bottom = 1920.0
+scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }

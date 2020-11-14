@@ -89,9 +89,9 @@ func save_card(card_prefab, card_path):
 		card_save_file.open(card_path, File.WRITE)
 		card_save_file.store_line(to_json(card_prefab.get_card_as_dictionary()))
 		was_successful = true
-		print("saved card at ", card_path)
-	else:
-		print("An equal card already exists.")
+		#print("saved card at ", card_path)
+#	else:
+#		print("An equal card already exists.")
 		
 	return was_successful
 

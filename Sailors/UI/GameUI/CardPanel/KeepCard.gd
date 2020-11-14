@@ -5,7 +5,7 @@ var r_overseer
 
 # Card meta variables
 
-var i_card_type_id = 1
+var i_card_type_id = 2
 
 var c_card_data
 

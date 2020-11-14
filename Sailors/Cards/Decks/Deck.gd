@@ -32,6 +32,11 @@ func add_card_list(card_type_id, card_list):
 func remove_card(card_type_id, card_index):
 	d_deck[card_type_id].remove(card_index)
 
+func remove_cards(card_type_id, card_id_list):
+	for card_id in card_id_list: 
+		var card_list = d_deck.get(card_type_id)
+		card_list.remove(card_id)
+
 
 func get_cards_of_type(card_type_id):
 	if d_deck.get(card_type_id):

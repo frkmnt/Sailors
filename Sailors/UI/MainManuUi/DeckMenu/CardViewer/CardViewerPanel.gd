@@ -46,14 +46,12 @@ func initialize_cards():
 		var file_name = directory.get_next()
 		var deck_instance
 		while file_name != "":
-			if directory.current_is_dir():
-				print("Found directory: " + file_name)
-			else:
-				print("Found file: " + path + file_name)
+			if not directory.current_is_dir():
+				#print("Found file: " + path + file_name)
 				add_card_to_accordion(file_name)
 			file_name = directory.get_next()
-	else:
-		print("An error occurred when trying to access the path.")
+#	else:
+#		print("An error occurred when trying to access the path.")
 
 
 func create_accordion(accordion_name, accordion_id):
@@ -115,12 +113,15 @@ func set_view_mode():
 		accordion.set_view_mode()
 
 
-func delete_card(card_type_id, card_index):
-	var accordion = c_accordion_container.get_child(card_type_id)
+func delete_card(card_type_id, card_id):
+	var card_path = "user://Cards/" + card_id
+	var directory = Directory.new()
+	directory.remove(card_path)
 
 
-func select_card(card_type_id, card_index, card_description):
+func select_card(card_type_id, card_id, card_description):
 	var accordion = c_accordion_container.get_child(card_type_id)
+	r_card_type_panel.r_parent_panel.add_card_with_data(card_type_id, card_id, card_description)
 	on_back_button_click()
 
 

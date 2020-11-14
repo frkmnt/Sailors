@@ -3,14 +3,10 @@
 [ext_resource path="res://UI/GameUI/CardStash/MenuItem.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/Custom_Fonts/cardLabel.tres" type="DynamicFont" id=2]
 
-[node name="SkillPanelItem" type="Panel"]
+[node name="SkillPanelItem" type="Button"]
 margin_right = 1080.0
 margin_bottom = 148.0
-mouse_filter = 2
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PlayerName" type="Label" parent="."]
 margin_right = 1080.0
@@ -22,4 +18,4 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="gui_input" from="." to="." method="on_item_click"]
+[connection signal="pressed" from="." to="." method="on_item_click"]

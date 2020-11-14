@@ -6,6 +6,8 @@ extends Node
 var c_main_menu_panel 
 var c_deck_bootstrapper
 
+
+
 #==== Bootstrap ====#
 
 func _ready():
@@ -33,11 +35,8 @@ func load_game(player_names, deck):
 	start_game(game_info)
 
 
-func start_game(player_names):
-	var game_info = load("res://Components/GameInfo.tscn").instance()
+func start_game(game_info):
 	var overseer = load("res://Components/Overseer.tscn").instance()
-	game_info.a_players = player_names
-	game_info.a_deck = get_deck_temp()
 	overseer.initialize(game_info)
 	add_child(overseer)
 	c_main_menu_panel.queue_free()

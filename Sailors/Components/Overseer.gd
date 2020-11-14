@@ -61,6 +61,7 @@ func clicked_card(): # on card click
 
 
 func keep_card():
+	print("keeping card")
 	c_dealer.keep_current_card()
 	clicked_card()
 

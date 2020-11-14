@@ -11,10 +11,12 @@ var a_players = []
 #==== Bootstrap ====#
 
 func initialize(player_names, deck):
-	a_deck = deck # TODO
+	initialize_deck(deck)
 	initialize_players(player_names)
 
 
+func initialize_deck(deck):
+	a_deck = deck.get_deck_as_list()
 
 
 func initialize_players(player_names):

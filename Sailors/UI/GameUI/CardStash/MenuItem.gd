@@ -12,11 +12,8 @@ func initialize(parent_menu, name):
 # Bootstrap
 
 
-func on_item_click(event):
-	if event is InputEventMouseButton \
-	and event.button_index == BUTTON_LEFT \
-	and event.is_pressed():
-		open_panel()
+func on_item_click():
+	open_panel()
 
 
 func open_panel():

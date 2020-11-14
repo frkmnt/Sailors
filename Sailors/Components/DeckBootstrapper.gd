@@ -207,9 +207,10 @@ func save_card(card_prefab):
 		card_save_file.open(card_path, File.WRITE)
 		card_save_file.store_line(to_json(card_prefab.get_card_as_dictionary()))
 		was_successful = true
-		print("saved card at ", card_path)
-	else:
-		print("An equal card already exists.")
+		#print("saved card at ", card_path)
+#	else:
+		#print("An equal card already exists.")
+		
 		
 	return was_successful
 
@@ -229,6 +230,6 @@ func save_deck(deck):
 		deck_save_file.open(deck_path, File.WRITE)
 		deck_save_file.store_line(to_json(deck.get_deck_as_dictionary()))
 	else:
-		print("deck with same name already exists, overriding")
+		#print("deck with same name already exists, overriding")
 		deck_save_file.open(deck_path, File.WRITE)
 		deck_save_file.store_line(to_json(deck.get_deck_as_dictionary()))

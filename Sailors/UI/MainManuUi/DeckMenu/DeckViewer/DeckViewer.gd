@@ -4,23 +4,34 @@ extends Panel
 const p_list_item = preload("res://UI/MainManuUi/DeckMenu/DeckViewer/DeckViewerListItem.tscn")
 const p_deck = preload("res://Cards/Decks/Deck.tscn")
 const s_deck_directory = "user://Decks/"
+var c_add_deck_button
 
 #==== References ====#
 var r_parent_panel
-var r_vbox_container
+var r_card_editor_menu
+var r_main_menu_panel
 var r_deck_editor 
+var r_add_players_panel
+
+var r_vbox_container
 
 #==== Variables ====#
 var d_deck = {}
-
+var i_mode = 0 # 0 is selection, 1 is edit
 
 
 #==== Boostrap ====#
 
 func initialize(parent_panel):
-	r_parent_panel = parent_panel
+	r_card_editor_menu = parent_panel
+	set_parent_panel(parent_panel)
 	r_vbox_container = $ScrollContainer/List
+	c_add_deck_button = $AddDeckButton
 	initialize_decks()
+
+
+func set_parent_panel(parent_panel):
+	r_parent_panel = parent_panel
 
 
 func initialize_decks():
@@ -30,16 +41,14 @@ func initialize_decks():
 		var file_name = directory.get_next()
 		var deck_instance
 		while file_name != "":
-			if directory.current_is_dir():
-				print("Found directory: " + file_name)
-			else:
-				print("Found file: " + s_deck_directory + file_name)
+			if not directory.current_is_dir():
+				#print("Found file: " + s_deck_directory + file_name)
 				deck_instance = load_deck(s_deck_directory + file_name)
 				create_vbox_item(deck_instance)
 				d_deck[deck_instance.s_name] = deck_instance
 			file_name = directory.get_next()
-	else:
-		print("An error occurred when trying to access the path.")
+#	else:
+#		print("An error occurred when trying to access the path.")
 
 
 
@@ -67,7 +76,7 @@ func save_deck(deck):
 		deck_save_file.open(deck_path, File.WRITE)
 		deck_save_file.store_line(to_json(deck.get_deck_as_dictionary()))
 	else:
-		print("deck with same name already exists, overriding")
+#		print("deck with same name already exists, overriding")
 		deck_save_file.open(deck_path, File.WRITE)
 		deck_save_file.store_line(to_json(deck.get_deck_as_dictionary()))
 	
@@ -94,7 +103,16 @@ func load_deck(deck_path):
 
 
 
+func set_selection_mode():
+	i_mode = 0
+	r_parent_panel = r_add_players_panel
+	c_add_deck_button.visible = false
+	r_card_editor_menu.visible = true
 
+func set_edit_mode():
+	i_mode = 1
+	r_parent_panel = r_card_editor_menu
+	c_add_deck_button.visible = true
 
 
 
@@ -108,17 +126,32 @@ func create_vbox_item(deck):
 	r_vbox_container.add_child(item_instance)
 	item_instance.rect_min_size = Vector2(1080, 400)
 
+
 func back_button():
+	if i_mode == 0:
+		r_add_players_panel.visible = true
+		r_card_editor_menu.visible = false
+	else:
+		r_card_editor_menu.visible = true
 	visible = false
+
 
 func add_deck_button():
 	new_deck()
 
+
+
 func item_clicked(deck):
 	var deck_path = "user://Decks/" + deck.s_name
 	var loaded_deck = load_deck(deck_path)
-	r_deck_editor.initialize_panel_with_deck(loaded_deck)
+	
+	if i_mode == 0:
+		r_main_menu_panel.c_deck = loaded_deck
+		r_main_menu_panel.start_game()
+	else:
+		r_deck_editor.initialize_panel_with_deck(loaded_deck)
+		r_deck_editor.visible = true
+	
 	self.visible = false
-	r_deck_editor.visible = true
 
 

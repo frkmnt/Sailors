@@ -19,6 +19,8 @@ var c_title
 
 #==== Variables ====#
 var a_cards = [] #TODO check if useless
+var s_file_path
+var i_deck_index
 
 
 
@@ -33,7 +35,9 @@ func initialize(parent_menu):
 	create_accordion("Keep Cards")
 	
 
-func initialize_panel_with_deck(deck):
+func initialize_panel_with_deck(deck, file_path, deck_index):
+	s_file_path = file_path
+	i_deck_index = deck_index
 	$Title.text = deck.s_name
 	initialize_cards(deck)
 
@@ -110,8 +114,6 @@ func add_card_with_data(card_type_id, card_id, card_text):
 	accordion.add_card(card_id, card_text, 1)
 
 
-
-
 func clear_info_from_panel():
 	for accordion in c_accordion_container.get_children():
 		accordion.clear_cards_from_accordion()
@@ -134,18 +136,32 @@ func close_all_accordions():
 
 #==== UI Interaction ====#
 
+func on_open():
+	grab_focus()
+	visible = false
+
+
+func on_close():
+	r_parent_menu.on_open()
+	r_parent_menu.visible = true
+	visible = false
+
+
+func on_delete_button_click():
+	on_close()
+	r_parent_menu.delete_deck(s_file_path, i_deck_index)
+
+
 func on_add_card_button_click():
 	r_card_editor_type.visible = true
 	self.visible = false
 
 
 func on_back_button_click():
-	visible = false
-	r_parent_menu.visible = true
 	var deck = create_deck_from_current_cards()
 	r_parent_menu.save_deck(deck)
-	
 	clear_info_from_panel()
 	close_all_accordions()
+	on_close()
 
 

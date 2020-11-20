@@ -64,4 +64,4 @@ func view_cards_button():
 
 func back_button():
 	visible = false
-	
+	r_parent_menu.grab_focus()

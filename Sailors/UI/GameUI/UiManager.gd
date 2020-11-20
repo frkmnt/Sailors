@@ -125,6 +125,7 @@ func on_card_click():
 
 
 func on_saved_cards_click():
+	p_stash_panel.on_open()
 	p_stash_panel.visible = true
 
 

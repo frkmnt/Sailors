@@ -1,11 +1,14 @@
 extends Panel
 
+#==== Components ====#
+const c_list_item_prefab = preload("res://UI/GameUI/CardStash/CardStashMenuItem.tscn")
+var c_item_list
+
 #==== References ====#
 var r_ui_manager
 var r_use_saved_card_panel
 
-const _list_item_prefab = preload("res://UI/GameUI/CardStash/MenuItem.tscn")
-
+#==== Variables ====#
 var a_player_names = []
 
 
@@ -14,24 +17,44 @@ var a_player_names = []
 
 func initialize(ui_manager, player_names):
 	r_ui_manager = ui_manager
+	r_use_saved_card_panel = $UseSavedCardPanel
+	c_item_list = $ScrollContainer/List
 	for player_name in player_names:
 		add_name_to_list(player_name)
-	r_use_saved_card_panel = $UseSavedCardPanel
 
 
 
-# Manipulators
+#==== Logic ====#
 
 func clear_name_list():
-	for child in $ScrollContainer/List.get_children():
+	for child in c_item_list.get_children():
 		child.queue_free()
 
 
 func add_name_to_list(name):
-	var item_instance = _list_item_prefab.instance()
+	var item_instance = c_list_item_prefab.instance()
 	item_instance.initialize(self, name)
-	$ScrollContainer/List.add_child(item_instance)
+	c_item_list.add_child(item_instance)
 	item_instance.rect_min_size = Vector2(1080, 148)
+
+
+
+#==== UI Interface ====#
+
+func on_open():
+	grab_focus()
+	set_list_item_input_process(true)
+
+
+func on_close():
+	release_focus()
+	set_list_item_input_process(true)
+
+
+func set_list_item_input_process(is_processing):
+	for list_item in c_item_list.get_children():
+		list_item.set_process_input(is_processing)
+
 
 
 func on_item_click(player_index):
@@ -41,11 +64,10 @@ func on_item_click(player_index):
 		r_use_saved_card_panel.visible = true
 
 
-
-
 func back_button():
-	visible = false
+	on_close()
 	r_ui_manager.visible = true
+	visible = false
 
 
 

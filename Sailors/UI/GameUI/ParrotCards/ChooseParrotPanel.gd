@@ -4,7 +4,7 @@ extends Panel
 var r_ui_manager
 var r_use_saved_card_panel
 
-const _list_item_prefab = preload("res://UI/GameUI/CardStash/MenuItem.tscn")
+const _list_item_prefab = preload("res://UI/GameUI/CardStash/CardStashMenuItem.tscn")
 
 var a_player_names = []
 

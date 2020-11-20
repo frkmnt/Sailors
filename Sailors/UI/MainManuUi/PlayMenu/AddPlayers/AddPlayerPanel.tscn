@@ -62,8 +62,8 @@ __meta__ = {
 margin_top = 550.0
 margin_right = 1080.0
 margin_bottom = 1700.0
-follow_focus = true
 scroll_horizontal_enabled = false
+scroll_deadzone = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -93,4 +93,5 @@ __meta__ = {
 [connection signal="pressed" from="AddPlayerButton" to="." method="add_player_button"]
 [connection signal="pressed" from="RemovePlayerButton" to="." method="remove_player_button"]
 [connection signal="pressed" from="BackButton" to="." method="back_button"]
-[connection signal="pressed" from="StartGameButton" to="." method="on_confirm_button"]
+[connection signal="button_down" from="StartGameButton" to="." method="on_button_down"]
+[connection signal="button_up" from="StartGameButton" to="." method="on_confirm_button"]

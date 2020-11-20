@@ -6,6 +6,7 @@
 [node name="DeckViewerListItem" type="Button"]
 margin_right = 1080.0
 margin_bottom = 400.0
+mouse_filter = 2
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

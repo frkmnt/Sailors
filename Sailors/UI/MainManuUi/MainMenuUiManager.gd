@@ -25,6 +25,7 @@ func initialize(game_manager):
 	r_game_manager = game_manager
 	initialize_panels()
 	initialize_resolution()
+	grab_focus()
 
 
 func initialize_panels():
@@ -55,10 +56,12 @@ func start_game():
 
 func play_button():
 	c_add_players_panel.visible = true
+	c_add_players_panel.on_open()
 
 
 func card_editor_button():
 	c_card_editor_panel.visible = true
+	c_card_editor_panel.grab_focus()
 
 
 

@@ -104,13 +104,15 @@ func set_selection_mode():
 	c_add_card_button.visible = false
 	for accordion in c_accordion_container.get_children():
 		accordion.set_selection_mode()
+	on_open()
 
 
-func set_view_mode():
+func set_edit_mode():
 	r_parent_panel = r_deck_menu
 	c_add_card_button.visible = true
 	for accordion in c_accordion_container.get_children():
 		accordion.set_view_mode()
+	on_open()
 
 
 func delete_card(card_type_id, card_id):
@@ -127,13 +129,22 @@ func select_card(card_type_id, card_id, card_description):
 
 #==== UI Interaction ====#
 
-func on_add_card_button_click():
-	r_card_editor.set_parent_as_card_viewer_panel()
-	r_card_editor.visible = true
+func on_open():
+	grab_focus()
+	visible = true
+
+
+func on_close():
+	r_parent_panel.on_open()
 	visible = false
 
 
 
+
+func on_add_card_button_click():
+	r_card_editor.set_parent_as_card_viewer_panel()
+	r_card_editor.visible = true
+	visible = false
 
 
 func on_back_button_click():

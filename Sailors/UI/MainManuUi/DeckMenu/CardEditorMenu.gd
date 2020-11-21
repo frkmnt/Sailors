@@ -1,7 +1,7 @@
 extends Panel
 
 #==== References ====#
-var r_parent_menu 
+var r_parent_panel 
 
 #==== Components ====#
 var c_deck_viewer 
@@ -15,7 +15,7 @@ var c_card_editor_type # choose type of a new card
 #==== Bootstrap ====#
 
 func initialize(parent_panel):
-	r_parent_menu = parent_panel
+	r_parent_panel = parent_panel
 	
 	c_deck_viewer = $DeckViewerPanel
 	c_deck_viewer.initialize(self)
@@ -24,7 +24,7 @@ func initialize(parent_panel):
 	c_deck_editor.initialize(c_deck_viewer)
 	
 	c_deck_viewer.r_deck_editor = c_deck_editor 
-	c_deck_viewer.r_main_menu_panel = r_parent_menu
+	c_deck_viewer.r_main_menu_panel = r_parent_panel
 	
 	c_card_viewer = $CardViewerPanel
 	c_card_viewer.initialize(self)
@@ -53,15 +53,23 @@ func initialize(parent_panel):
 
 #==== UI Management ====#
 
+func on_open():
+	visible = true
+	grab_focus()
+
+
+func on_close():
+	visible = false
+	r_parent_panel.on_open()
+
+
 func view_decks_button():
-	c_deck_viewer.visible = true
 	c_deck_viewer.set_edit_mode()
 
 func view_cards_button():
-	c_card_viewer.set_view_mode()
-	c_card_viewer.visible = true
+	c_card_viewer.set_edit_mode()
 
 
 func back_button():
 	visible = false
-	r_parent_menu.grab_focus()
+	r_parent_panel.grab_focus()

@@ -113,12 +113,14 @@ func load_deck(deck_path):
 #==== UI Management ====#
 
 func on_open():
+	visible = true
 	grab_focus()
 	set_list_item_input_process(true)
 
 
 func on_close():
-	release_focus()
+	visible = false
+	r_parent_panel.on_open()
 	set_list_item_input_process(false)
 
 
@@ -174,7 +176,7 @@ func item_clicked(deck, deck_index):
 
 func create_vbox_item(deck, deck_path):
 	var item_instance = p_list_item.instance()
-	item_instance.initialize(self, deck, deck_path, true)
+	item_instance.initialize(self, deck, deck_path, false)
 	c_vbox_container.add_child(item_instance)
 	item_instance.rect_min_size = Vector2(1080, 400)
 

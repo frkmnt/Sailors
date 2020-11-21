@@ -49,18 +49,31 @@ func remove_player():
 		list_item.queue_free()
 
 
+func create_player_list():
+	var cur_player_list = []
+	for child in c_player_list.get_children():
+		cur_player_list.append(child.get_text())
+	return cur_player_list
+
+
+func delete_all_players():
+	for list_item in c_player_list.get_children():
+		list_item.set_process_input(false)
+		list_item.focus_exited()
+
+
 #==== UI Management ====#
 
-
 func on_open():
+	visible = true
 	grab_focus()
 	set_list_item_input_process(true)
 
 func on_close():
+	visible = false
 	release_focus()
-	for list_item in c_player_list.get_children():
-		list_item.set_process_input(false)
-		list_item.focus_exited()
+	delete_all_players()
+
 
 func set_list_item_input_process(is_processing):
 	for list_item in c_player_list.get_children():
@@ -85,15 +98,12 @@ func remove_player_button():
 
 
 func on_confirm_button():
+	print("bruh")
 	if i_total_players > 1:
-		var a_cur_player_list = []
-		for child in c_player_list.get_children():
-			a_cur_player_list.append(child.get_text())
-		
-		r_main_menu_panel.a_players = a_cur_player_list
-		r_deck_viewer.visible = true
+		var cur_player_list = create_player_list()
+		r_main_menu_panel.a_players = cur_player_list
 		r_deck_viewer.set_selection_mode()
-		visible = false
+		on_close()
 
 
 func on_button_down():

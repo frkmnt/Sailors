@@ -137,14 +137,13 @@ func close_all_accordions():
 #==== UI Interaction ====#
 
 func on_open():
+	visible = true
 	grab_focus()
-	visible = false
 
 
 func on_close():
-	r_parent_menu.on_open()
-	r_parent_menu.visible = true
 	visible = false
+	r_parent_menu.on_open()
 
 
 func on_delete_button_click():

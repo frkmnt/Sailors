@@ -55,13 +55,11 @@ func start_game():
 #==== UI Management ====#
 
 func play_button():
-	c_add_players_panel.visible = true
 	c_add_players_panel.on_open()
 
 
 func card_editor_button():
-	c_card_editor_panel.visible = true
-	c_card_editor_panel.grab_focus()
+	c_card_editor_panel.on_open()
 
 
 

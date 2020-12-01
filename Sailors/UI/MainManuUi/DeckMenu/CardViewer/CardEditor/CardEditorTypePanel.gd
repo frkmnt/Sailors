@@ -30,9 +30,19 @@ func initialize(parent_panel):
 
 #==== UI Interface ====#
 
-func on_back_button_click():
-	r_parent_panel.visible = true
+func on_open():
+	grab_focus()
+	visible = true
+
+
+func on_close():
+	r_parent_panel.on_open()
 	visible = false
+
+
+func on_back_button_click():
+	on_close()
+	r_parent_panel.on_open()
 
 
 func on_new_card_button_click():

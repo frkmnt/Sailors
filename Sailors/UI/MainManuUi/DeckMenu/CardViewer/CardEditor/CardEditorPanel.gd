@@ -2,10 +2,7 @@ extends Panel
 
 
 #==== References ====#
-var r_choose_card_prefab = preload("res://Cards/CardTypes/ChooseCard/ChooseCardData.tscn")
-var r_do_card_prefab = preload("res://Cards/CardTypes/DoCard/DoCardData.tscn")
-var r_keep_card_prefab = preload("res://Cards/CardTypes/KeepCard/KeepCardData.tscn")
-
+var r_object_factory
 var r_card_type_editor
 var r_card_viewer 
 var r_deck_editor
@@ -23,6 +20,7 @@ var i_parent_panel_id = 0
 #==== Bootstrap ====#
 
 func initialize():
+	r_object_factory = get_node("/root/GameOverseer/ObjectFactory")
 	set_parent_as_card_type_panel()
 	c_dropdown = $DeckTypeDropDown
 	c_dropdown.add_item("Choose Card", 0)
@@ -51,35 +49,41 @@ func clear_all_info():
 
 
 
-#==== UI Interaction ====#
 
+#==== UI Interaction ====#
 
 func on_confirm_card(): #TODO factory
 	if c_dropdown.selected < 0:
 		pass
 	
+	var was_successful
 	var card_path
 	var card_prefab
 	match c_dropdown.selected:
-		0:
-			card_prefab = r_choose_card_prefab.instance()
+		0: # choose card
+			card_prefab = r_object_factory.create_choose_card_prefab()
 			card_prefab.s_option_a = c_choose_card_info_container.get_child(0).text
 			card_prefab.s_option_b = c_choose_card_info_container.get_child(1).text
+			was_successful = validate_choose_card(card_prefab)
 			card_path = "user://Cards/" + card_prefab.get_card_hash_id()
-			
-		1:
-			card_prefab = r_do_card_prefab.instance()
+		1: # do card
+			card_prefab = r_object_factory.create_do_card_prefab()
 			card_prefab.s_what_to_do = c_normal_card_info_container.get_child(0).text
+			was_successful = validate_do_card(card_prefab)
 			card_path = "user://Cards/" + card_prefab.get_card_hash_id()
-		2:
-			card_prefab = r_keep_card_prefab.instance()
+		2: # keep card
+			card_prefab = r_object_factory.create_keep_card_prefab()
 			card_prefab.s_what_to_do = c_normal_card_info_container.get_child(0).text
+			was_successful = validate_keep_card(card_prefab)
 			card_path = "user://Cards/" + card_prefab.get_card_hash_id()
 	
-	var was_successful = save_card(card_prefab, card_path)
-	clear_all_info()
 	if was_successful:
-		add_card_to_parent_menu(card_prefab)
+		print("pass first")
+		was_successful = save_card(card_prefab, card_path)
+		if was_successful:
+			print("pass second")
+			add_card_to_parent_menu(card_prefab)
+			clear_all_info()
 
 
 func save_card(card_prefab, card_path):
@@ -104,6 +108,49 @@ func add_card_to_parent_menu(card_prefab):
 	
 	visible = false
 	make_parent_panel_visible()
+
+
+
+func validate_choose_card(card_prefab):
+	var card_string = card_prefab.s_option_a
+	card_string = card_string.strip_edges(true, true)
+	card_string = card_string.strip_escapes()
+	card_string = card_string.dedent()
+	card_prefab.s_option_a = card_string
+	
+	card_string = card_prefab.s_option_b
+	card_string = card_string.strip_edges(true, true)
+	card_string = card_string.strip_escapes()
+	card_string = card_string.dedent()
+	card_prefab.s_option_b = card_string
+	
+	return card_prefab.s_option_a != "" and card_prefab.s_option_b != ""
+
+
+
+func validate_do_card(card_prefab):
+	print(card_prefab.s_what_to_do)
+	var card_string = card_prefab.s_what_to_do
+	card_string = card_string.strip_edges(true, true)
+	card_string = card_string.strip_escapes()
+	card_string = card_string.dedent()
+	card_prefab.s_what_to_do = card_string
+	print(card_prefab.s_what_to_do)
+	return card_prefab.s_what_to_do != "" 
+
+
+func validate_keep_card(card_prefab):
+	var card_string = card_prefab.s_what_to_do
+	card_string = card_string.strip_edges(true, true)
+	card_string = card_string.strip_escapes()
+	card_string = card_string.dedent()
+	card_prefab.s_what_to_do = card_string
+	return card_prefab.s_what_to_do != "" 
+
+
+
+
+
 
 #==== UI Management ====#
 

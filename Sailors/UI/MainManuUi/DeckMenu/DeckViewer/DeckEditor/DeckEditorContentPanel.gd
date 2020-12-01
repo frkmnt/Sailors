@@ -8,17 +8,17 @@ const c_vbox_item_prefab = preload("res://UI/MainManuUi/DeckMenu/DeckViewer/Deck
 var r_vbox_container
 var r_parent_menu
 
-
 #==== Constants ====#
 const i_card_panel_height = 620
 const i_card_gap_height = 50
-
 
 #==== Variables ====#
 var is_expanded = false
 var last_rect_size = Vector2.ZERO
 var i_card_count = 0
 var i_scaling_speed = 0.002
+
+
 
 
 #==== Bootstrap ====#
@@ -35,6 +35,8 @@ func initialize(parent_menu):
 
 func toggle_show_content():
 	is_expanded = !is_expanded
+
+
 
 
 #==== Tick ====#

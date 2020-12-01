@@ -1,6 +1,7 @@
 extends Panel
 
 #==== References ====#
+var r_object_factory
 var r_parent_menu
 var r_card_editor_type
 
@@ -8,11 +9,6 @@ var r_card_editor_type
 var c_deck_editor_accordion = preload("res://UI/MainManuUi/DeckMenu/DeckViewer/DeckEditor/DeckEditorAccordion.tscn")
 var c_deck_editor_item = preload("res://UI/MainManuUi/DeckMenu/DeckViewer/DeckEditor/DeckEditorAccordionItem.tscn")
 var c_deck_prefab = preload("res://Cards/Decks/Deck.tscn")
-
-var c_choose_card_prefab = preload("res://Cards/CardTypes/ChooseCard/ChooseCardData.tscn")
-var c_do_card_prefab = preload("res://Cards/CardTypes/DoCard/DoCardData.tscn")
-var c_keep_card_prefab = preload("res://Cards/CardTypes/KeepCard/KeepCardData.tscn")
-
 
 var c_accordion_container 
 var c_title
@@ -27,6 +23,7 @@ var i_deck_index
 #==== Bootstrap ====#
 
 func initialize(parent_menu):
+	r_object_factory = get_node("/root/GameOverseer/ObjectFactory")
 	r_parent_menu = parent_menu
 	c_accordion_container = $ScrollContainer/List
 	c_title = $Title
@@ -88,14 +85,14 @@ func load_card_data(card_data_path, type_id):
 		
 		match type_id:
 			0:
-				card_prefab = c_choose_card_prefab.instance()
+				card_prefab = r_object_factory.create_choose_card_prefab()
 				card_prefab.s_option_a = content.get("card_info")[0]
 				card_prefab.s_option_b = content.get("card_info")[1]
 			1:
-				card_prefab = c_do_card_prefab.instance()
+				card_prefab = r_object_factory.create_do_card_prefab()
 				card_prefab.s_what_to_do = content.get("card_info")
 			2:
-				card_prefab = c_keep_card_prefab.instance()
+				card_prefab = r_object_factory.create_keep_card_prefab()
 				card_prefab.s_what_to_do = content.get("card_info")
 		
 		

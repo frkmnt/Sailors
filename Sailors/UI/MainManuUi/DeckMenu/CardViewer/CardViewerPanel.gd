@@ -1,6 +1,7 @@
 extends Panel
 
 #==== References ====#
+var r_object_factory
 var r_parent_panel
 var r_card_editor
 var r_card_type_panel
@@ -9,10 +10,6 @@ var r_deck_menu
 #==== Components ====#
 var c_card_viewer_accordion = preload("res://UI/MainManuUi/DeckMenu/CardViewer/CardViewerAccordion.tscn")
 var c_deck_prefab = preload("res://Cards/Decks/Deck.tscn")
-
-var c_choose_card_prefab = preload("res://Cards/CardTypes/ChooseCard/ChooseCardData.tscn")
-var c_do_card_prefab = preload("res://Cards/CardTypes/DoCard/DoCardData.tscn")
-var c_keep_card_prefab = preload("res://Cards/CardTypes/KeepCard/KeepCardData.tscn")
 
 var c_accordion_container 
 var c_add_card_button
@@ -25,6 +22,7 @@ var a_cards = []
 #==== Bootstrap ====#
 
 func initialize(parent_menu):
+	r_object_factory = get_node("/root/GameOverseer/ObjectFactory")
 	r_deck_menu = parent_menu
 	r_parent_panel = parent_menu
 	c_accordion_container = $ScrollContainer/List
@@ -78,14 +76,14 @@ func load_card_data(card_data_path):
 	var card_type_string = content.get("card_type")
 	match int(card_type_string):
 		0:
-			card_prefab = c_choose_card_prefab.instance()
+			card_prefab = r_object_factory.create_choose_card_prefab()
 			card_prefab.s_option_a = content.get("card_info")[0]
 			card_prefab.s_option_b = content.get("card_info")[1]
 		1:
-			card_prefab = c_do_card_prefab.instance()
+			card_prefab = r_object_factory.create_do_card_prefab()
 			card_prefab.s_what_to_do = content.get("card_info")
 		2:
-			card_prefab = c_keep_card_prefab.instance()
+			card_prefab = r_object_factory.create_keep_card_prefab()
 			card_prefab.s_what_to_do = content.get("card_info")
 	
 	return card_prefab
@@ -127,6 +125,13 @@ func select_card(card_type_id, card_id, card_description):
 	on_back_button_click()
 
 
+func close_all_accordions():
+	for accordion in c_accordion_container.get_children():
+		accordion.c_content_panel.shrink_panel()
+
+
+
+
 #==== UI Interaction ====#
 
 func on_open():
@@ -137,6 +142,7 @@ func on_open():
 func on_close():
 	r_parent_panel.on_open()
 	visible = false
+	close_all_accordions()
 
 
 
@@ -148,5 +154,4 @@ func on_add_card_button_click():
 
 
 func on_back_button_click():
-	visible = false
-	r_parent_panel.visible = true
+	on_close()

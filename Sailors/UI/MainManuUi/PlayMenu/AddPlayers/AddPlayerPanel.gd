@@ -56,10 +56,21 @@ func create_player_list():
 	return cur_player_list
 
 
-func delete_all_players():
+func reset_panel():
+	delete_all_players()
+	i_total_players = 0
+	r_total_players_label.text = String(0)
+
+func remove_menu_item_focus():
 	for list_item in c_player_list.get_children():
 		list_item.set_process_input(false)
 		list_item.focus_exited()
+
+func delete_all_players():
+	for list_item in c_player_list.get_children():
+		list_item.queue_free()
+
+
 
 
 #==== UI Management ====#
@@ -72,7 +83,7 @@ func on_open():
 func on_close():
 	visible = false
 	release_focus()
-	delete_all_players()
+	remove_menu_item_focus()
 
 
 func set_list_item_input_process(is_processing):
@@ -81,13 +92,9 @@ func set_list_item_input_process(is_processing):
 
 
 func back_button():
-	r_main_menu_panel.visible = true
-	for list_item in c_player_list.get_children():
-		list_item.queue_free()
-	i_total_players = 0
-	r_total_players_label.text = String(0)
-	visible = false
-	r_main_menu_panel.grab_focus()
+	on_close()
+	reset_panel()
+	r_main_menu_panel.on_open()
 
 
 func add_player_button():
@@ -98,7 +105,6 @@ func remove_player_button():
 
 
 func on_confirm_button():
-	print("bruh")
 	if i_total_players > 1:
 		var cur_player_list = create_player_list()
 		r_main_menu_panel.a_players = cur_player_list

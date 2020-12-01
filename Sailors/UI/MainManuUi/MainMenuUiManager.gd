@@ -52,7 +52,17 @@ func start_game():
 
 
 
-#==== UI Management ====#
+
+#==== UI Logic ====#
+
+func on_open():
+	visible = true
+	grab_focus()
+
+
+func on_close():
+	visible = false
+
 
 func play_button():
 	c_add_players_panel.on_open()
@@ -61,6 +71,11 @@ func play_button():
 func card_editor_button():
 	c_card_editor_panel.on_open()
 
+
+func reset_panel():
+	c_add_players_panel.on_close()
+	c_add_players_panel.reset_panel()
+	c_card_editor_panel.on_close()
 
 
 

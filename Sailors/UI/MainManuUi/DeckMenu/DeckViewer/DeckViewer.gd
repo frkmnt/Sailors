@@ -151,7 +151,7 @@ func back_button():
 		r_card_editor_menu.visible = false
 	else:
 		r_card_editor_menu.visible = true
-	r_parent_panel.grab_focus()
+	r_parent_panel.grab_focus() #TODO refactor to r_pranet_panel.on_open()
 	visible = false
 
 

@@ -5,7 +5,8 @@ extends Node
 var i_card_type_id = 2
 
 export (String) var s_what_to_do
-var b_can_keep = true
+
+
 
 func get_card_as_string():
 	return s_what_to_do

@@ -16,15 +16,72 @@ _global_script_class_icons={
 [application]
 
 config/name="Sailors"
-run/main_scene="res://Components/GameManager.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://GameOverseer.tscn"
+boot_splash/image="res://Assets/icon.png"
+boot_splash/use_filter=false
+config/icon="res://Assets/icon.png"
 
 [display]
 
-window/size/width=720
-window/size/height=1280
+window/size/width=1080
+window/size/height=1920
 window/handheld/orientation="portrait"
 window/stretch/mode="2d"
+
+[input]
+
+ui_accept={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_select={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_cancel={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_focus_next={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_focus_prev={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_left={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_right={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_up={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_down={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_page_up={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_page_down={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_home={
+"deadzone": 0.5,
+"events": [  ]
+}
+ui_end={
+"deadzone": 0.5,
+"events": [  ]
+}
 
 [input_devices]
 
@@ -35,4 +92,4 @@ pointing/emulate_touch_from_mouse=true
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://Config/default_env.tres"

@@ -32,6 +32,7 @@ func clear_name_list():
 
 
 func add_name_to_list(name):
+	a_player_names.append(name)
 	var item_instance = c_list_item_prefab.instance()
 	item_instance.initialize(self, name)
 	c_item_list.add_child(item_instance)
@@ -50,7 +51,7 @@ func on_open():
 func on_close():
 	visible = false
 	release_focus()
-	set_list_item_input_process(true)
+	set_list_item_input_process(false)
 
 
 func set_list_item_input_process(is_processing):
@@ -61,8 +62,9 @@ func set_list_item_input_process(is_processing):
 
 func on_item_click(player_index):
 	var card_list = r_game_manager.c_dealer.get_player_cards(player_index)
+	var player_name = a_player_names[player_index]
 	if card_list.size() > 0:
-		r_use_saved_card_panel.initialize(self, card_list, player_index)
+		r_use_saved_card_panel.initialize(self, card_list, player_index, player_name)
 		r_use_saved_card_panel.visible = true
 
 

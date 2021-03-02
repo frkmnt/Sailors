@@ -32,9 +32,6 @@ func initialize_main_menu():
 
 
 
-
-
-
 #==== Main Menu Interface ====#
 
 func load_game(player_names, deck):
@@ -53,11 +50,5 @@ func start_game(game_info):
 func on_game_exit():
 	c_main_menu_panel.reset_panel()
 	c_main_menu_panel.on_open()
-
-
-
-
-
-
 
 

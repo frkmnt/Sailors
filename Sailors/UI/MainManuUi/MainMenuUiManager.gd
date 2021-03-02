@@ -4,13 +4,12 @@ extends Panel
 var r_game_manager
 onready var r_viewport = get_viewport()
 
-
 #==== Components ====#
 var c_add_players_panel
 var c_card_editor_panel
+var c_admob
 
 #==== Variables ====#
-
 var v_design_size = Vector2(1080, 1920)
 
 var a_players
@@ -26,6 +25,8 @@ func initialize(game_manager):
 	initialize_panels()
 	initialize_resolution()
 	grab_focus()
+	c_admob = $AdMob
+	load_banner_ad()
 
 
 func initialize_panels():
@@ -79,3 +80,8 @@ func reset_panel():
 
 
 
+#==== Ads ====#
+
+func load_banner_ad():
+	c_admob.load_interstitial()
+	c_admob.show_banner()

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Fonts/Custom_Fonts/cardTitleLabel.tres" type="DynamicFont" id=1]
 [ext_resource path="res://UI/MainManuUi/PlayMenu/AddPlayers/AddPlayerPanel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/MainManuUi/MainMenuUiManager.gd" type="Script" id=3]
 [ext_resource path="res://UI/MainManuUi/DeckMenu/CardEditorMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://admob-lib/admob.gd" type="Script" id=5]
 
 [node name="MainMenuUiManager" type="Panel"]
 margin_right = 1080.0
@@ -50,5 +51,11 @@ visible = false
 
 [node name="AddPlayerPanel" parent="MenuContainer" instance=ExtResource( 2 )]
 visible = false
+
+[node name="AdMob" type="Node" parent="."]
+script = ExtResource( 5 )
+banner_id = "ca-app-pub-3940256099942544/6300978111"
+interstitial_id = "ca-app-pub-3940256099942544/1033173712"
+rewarded_id = "ca-app-pub-3940256099942544/5224354917"
 [connection signal="pressed" from="PlayButton" to="." method="play_button"]
 [connection signal="button_down" from="DeckEditor" to="." method="card_editor_button"]

@@ -1,19 +1,24 @@
 extends Panel
 
-
 #==== References ====#
 var r_parent_menu
+
+#==== Components ====#
+var c_title
 
 #==== Variables ====#
 var b_mouse_button_down = false
 var b_has_scrolled = false
+var s_player_name = "Sailor"
 
 
 #==== Bootstrap ====#
 
 func initialize(parent_menu, name):
 	r_parent_menu = parent_menu
-	$PlayerName.text = name
+	c_title = $PlayerName
+	s_player_name = name
+	c_title.text = s_player_name
 
 
 func _ready():

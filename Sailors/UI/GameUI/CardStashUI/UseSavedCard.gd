@@ -1,18 +1,26 @@
 extends Panel
 
+#==== References ====#
 var r_parent_panel
 var r_description_label
 
+#==== Components ====#
+var c_title
+
+
+#==== Variables ====#
 var a_card_list = []
 var cur_card_index = 0
 var i_player_id
 
 
-func initialize(parent_panel, card_list, player_id):
+func initialize(parent_panel, card_list, player_id, player_name):
 	r_parent_panel = parent_panel
 	a_card_list = card_list
 	var card_info = a_card_list[0]
 	var description = card_info[1].get_card_as_string()
+	c_title = $Title
+	c_title.text = player_name
 	r_description_label = $CurrentCardPanel/CurrentCardDecription
 	r_description_label.text = description
 	i_player_id = player_id

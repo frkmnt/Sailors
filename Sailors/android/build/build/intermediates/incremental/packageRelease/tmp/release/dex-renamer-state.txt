@@ -1,0 +1,4 @@
+#Mon Jan 18 20:45:38 GMT 2021
+base.0=S\:\\Documents\\Projects\\Sailors\\Sailors\\android\\build\\build\\intermediates\\dex\\release\\mergeDexRelease\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

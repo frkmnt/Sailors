@@ -1,0 +1,169 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Assets/MainMenu/Splash/splash_1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/MainMenu/boat.png" type="Texture" id=2]
+[ext_resource path="res://Assets/MainMenu/wave_background_highlights.png" type="Texture" id=3]
+[ext_resource path="res://Assets/MainMenu/wave_background_base_color.png" type="Texture" id=4]
+[ext_resource path="res://Assets/MainMenu/wave_foreground_highlights.png" type="Texture" id=5]
+[ext_resource path="res://Assets/MainMenu/Splash/splash_3.png" type="Texture" id=6]
+[ext_resource path="res://Assets/MainMenu/wave_foreground_base_color.png" type="Texture" id=7]
+[ext_resource path="res://Assets/MainMenu/wave_foreground_dark_tone.png" type="Texture" id=8]
+[ext_resource path="res://Assets/MainMenu/Splash/splash_2.png" type="Texture" id=9]
+[ext_resource path="res://Assets/MainMenu/wave_foreground_outline.png" type="Texture" id=10]
+[ext_resource path="res://Assets/MainMenu/background.jpg" type="Texture" id=11]
+[ext_resource path="res://Assets/MainMenu/wave_background_outline.png" type="Texture" id=12]
+[ext_resource path="res://Assets/MainMenu/title.png" type="Texture" id=13]
+[ext_resource path="res://Assets/MainMenu/clouds.png" type="Texture" id=14]
+[ext_resource path="res://Assets/MainMenu/Splash/splash_4.png" type="Texture" id=15]
+[ext_resource path="res://Assets/MainMenu/wave_background_dark.png" type="Texture" id=16]
+[ext_resource path="res://UI/Components/Decoration/Boat/BoatAnimManager.gd" type="Script" id=17]
+
+[sub_resource type="Animation" id=1]
+resource_name = "waves_animation_loop"
+length = 3.0
+loop = true
+step = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("WaveBgBaseColor:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 25 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("WaveFgBaseColor:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 45 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Boat:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 60 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("MenuContainer/BoatAnimPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "randomize_layer_positions"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Splash:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 2.8 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 15 ) ],
+"loop": false,
+"name": "splash",
+"speed": 6.0
+} ]
+
+[node name="BoatAnimManager" type="Control"]
+margin_right = 1080.0
+margin_bottom = 1920.0
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BoatAnimPlayer" type="AnimationPlayer" parent="."]
+method_call_mode = 1
+anims/waves_animation_loop = SubResource( 1 )
+
+[node name="Background" type="Sprite" parent="."]
+scale = Vector2( 1.688, 1.688 )
+texture = ExtResource( 11 )
+centered = false
+
+[node name="Clouds" type="Sprite" parent="."]
+scale = Vector2( 1.688, 1.688 )
+texture = ExtResource( 14 )
+centered = false
+
+[node name="WaveBgBaseColor" type="Sprite" parent="."]
+scale = Vector2( 1.688, 1.688 )
+texture = ExtResource( 4 )
+centered = false
+
+[node name="WaveBgDark" type="Sprite" parent="WaveBgBaseColor"]
+texture = ExtResource( 16 )
+centered = false
+
+[node name="WaveBgHighlights" type="Sprite" parent="WaveBgBaseColor/WaveBgDark"]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="WaveBgOutline" type="Sprite" parent="WaveBgBaseColor/WaveBgDark/WaveBgHighlights"]
+texture = ExtResource( 12 )
+centered = false
+
+[node name="Boat" type="Sprite" parent="."]
+scale = Vector2( 1.688, 1.688 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="WaveFgBaseColor" type="Sprite" parent="."]
+scale = Vector2( 1.688, 1.688 )
+texture = ExtResource( 7 )
+centered = false
+
+[node name="WaveFgDarkTone" type="Sprite" parent="WaveFgBaseColor"]
+texture = ExtResource( 8 )
+centered = false
+
+[node name="WaveFgHighlights" type="Sprite" parent="WaveFgBaseColor/WaveFgDarkTone"]
+texture = ExtResource( 5 )
+centered = false
+
+[node name="WaveFgOutline" type="Sprite" parent="WaveFgBaseColor/WaveFgDarkTone/WaveFgHighlights"]
+texture = ExtResource( 10 )
+centered = false
+
+[node name="Splash" type="AnimatedSprite" parent="."]
+scale = Vector2( 1.688, 1.688 )
+frames = SubResource( 2 )
+animation = "splash"
+frame = 3
+playing = true
+centered = false
+
+[node name="Title" type="Sprite" parent="."]
+position = Vector2( 188, 151.372 )
+texture = ExtResource( 13 )
+centered = false

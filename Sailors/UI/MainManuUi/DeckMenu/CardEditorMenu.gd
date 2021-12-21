@@ -72,4 +72,4 @@ func view_cards_button():
 
 func back_button():
 	visible = false
-	r_parent_panel.grab_focus()
+	r_parent_panel.on_open()

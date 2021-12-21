@@ -4,7 +4,7 @@ extends Node
 #==== Main Components ====#
 var c_main_menu_panel 
 var c_game_manager
-
+var c_ad_manager
 
 
 #==== Components ====#
@@ -18,6 +18,7 @@ var c_object_factory
 func _ready():
 	initialize_starting_decks()
 	initialize_main_menu()
+	initialize_ad_manager()
 	c_object_factory = $ObjectFactory
 
 
@@ -25,11 +26,15 @@ func initialize_starting_decks():
 	c_deck_bootstrapper = $DeckBootstrapper
 	c_deck_bootstrapper.initialize()
 
-
 func initialize_main_menu():
-	c_main_menu_panel = $MainMenuUiManager
+	c_main_menu_panel = $MainMenu
 	c_main_menu_panel.initialize(self)
 
+func initialize_ad_manager():
+	c_ad_manager = $AdManager
+	c_ad_manager.initialize(self)
+#	c_ad_manager.play_admob_banner()
+	c_ad_manager.play_admob_interstitial()
 
 
 #==== Main Menu Interface ====#
@@ -50,5 +55,7 @@ func start_game(game_info):
 func on_game_exit():
 	c_main_menu_panel.reset_panel()
 	c_main_menu_panel.on_open()
+
+
 
 

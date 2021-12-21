@@ -1,0 +1,86 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Fonts/Custom_Fonts/cardTitleLabel.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Fonts/Custom_Fonts/cardLabel.tres" type="DynamicFont" id=2]
+[ext_resource path="res://UI/Components/GameUI/CardStashUI/UseSavedCard.gd" type="Script" id=3]
+
+[node name="UseSavedCardPanel" type="Panel"]
+margin_right = 1080.0
+margin_bottom = 1920.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+margin_right = 1080.0
+margin_bottom = 550.0
+custom_fonts/font = ExtResource( 1 )
+text = "Choose a Card"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentCardPanel" type="Panel" parent="."]
+margin_left = 100.0
+margin_top = 600.0
+margin_right = 980.0
+margin_bottom = 1670.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentCardDecription" type="Label" parent="CurrentCardPanel"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 830.0
+margin_bottom = 1020.0
+custom_fonts/font = ExtResource( 2 )
+text = "This is a stashed card Description."
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftCardButton" type="Button" parent="."]
+margin_top = 600.0
+margin_right = 100.0
+margin_bottom = 1670.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightCardButton" type="Button" parent="."]
+margin_left = 980.0
+margin_top = 600.0
+margin_right = 1080.0
+margin_bottom = 1670.0
+text = "|"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConfirmCardButton" type="Button" parent="."]
+margin_top = 1670.0
+margin_right = 1080.0
+margin_bottom = 1920.0
+custom_fonts/font = ExtResource( 2 )
+text = "Confirm"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="."]
+margin_right = 150.0
+margin_bottom = 154.0
+custom_fonts/font = ExtResource( 2 )
+text = "B"
+[connection signal="pressed" from="LeftCardButton" to="." method="left_card_button"]
+[connection signal="pressed" from="RightCardButton" to="." method="right_card_button"]
+[connection signal="pressed" from="ConfirmCardButton" to="." method="use_saved_card"]
+[connection signal="pressed" from="BackButton" to="." method="back_button"]

@@ -65,11 +65,11 @@ func max_ad_content_rate_set(new_val) -> void:
 func init() -> bool:
 	if(Engine.has_singleton("GodotAdMob")):
 		_admob_singleton = Engine.get_singleton("GodotAdMob")
-
+		
 		# check if one signal is already connected
 		if not _admob_singleton.is_connected("on_admob_ad_loaded", self, "_on_admob_ad_loaded"):
 			connect_signals()
-
+		
 		_admob_singleton.initWithContentRating(
 			is_real,
 			child_directed,

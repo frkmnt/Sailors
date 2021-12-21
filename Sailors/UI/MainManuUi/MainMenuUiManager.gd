@@ -25,14 +25,13 @@ func initialize(game_manager):
 	initialize_panels()
 	initialize_resolution()
 	grab_focus()
-	c_admob = $AdMob
-	load_banner_ad()
+
 
 
 func initialize_panels():
 	var menu_container = get_child(3)
 	
-	c_card_editor_panel = menu_container.get_child(0)
+	c_card_editor_panel = $
 	c_card_editor_panel.initialize(self)
 	
 	c_add_players_panel = menu_container.get_child(1)
@@ -80,8 +79,3 @@ func reset_panel():
 
 
 
-#==== Ads ====#
-
-func load_banner_ad():
-	c_admob.load_interstitial()
-	c_admob.show_banner()

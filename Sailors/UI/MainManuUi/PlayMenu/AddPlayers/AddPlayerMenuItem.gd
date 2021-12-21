@@ -62,6 +62,8 @@ func focus_entered():
 	caret_position = text.length()
 	b_has_scrolled = false
 	grab_focus()
+#	if OS.has_virtual_keyboard():
+#		OS.show_virtual_keyboard(text)
 
 
 func focus_exited():

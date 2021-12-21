@@ -54,6 +54,10 @@ func get_deck_as_dictionary():
 	return data_dict
 
 
+func get_deck_as_hash_id():
+	return d_deck.hash()
+
+
 
 func get_deck_as_list():
 	var deck = []
@@ -73,7 +77,6 @@ func get_deck_as_list():
 	deck.append([])
 	for keep_card_id in aux_dict.keys():
 		deck[2].append( [keep_card_id, aux_dict.get(keep_card_id)] )
-	
 	
 	return deck
 

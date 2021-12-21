@@ -4,7 +4,24 @@
             "outputFile": "S:\\Documents\\Projects\\Sailors\\Sailors\\android\\build\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-pt\\values-pt.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\frkmnt\\.gradle\\caches\\transforms-2\\files-2.1\\947833f03979c6d84fcd9a8feba7ce42\\core-1.0.0\\res\\values-pt\\values-pt.xml",
+                    "source": "S:\\Documents\\Projects\\Sailors\\Sailors\\android\\build\\res\\values-pt\\godot_project_name_string.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "1",
+                        "startOffsets": "112",
+                        "endColumns": "58",
+                        "endOffsets": "169"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "61",
+                        "endOffsets": "112"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\frkmnt\\.gradle\\caches\\transforms-2\\files-2.1\\61f903db516e52d8783db3337e87ee1a\\core-1.0.0\\res\\values-pt\\values-pt.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -15,19 +32,9 @@
                     "to": {
                         "startLines": "3",
                         "startColumns": "4",
-                        "startOffsets": "131",
+                        "startOffsets": "117",
                         "endColumns": "100",
-                        "endOffsets": "227"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\frkmnt\\.gradle\\caches\\transforms-2\\files-2.1\\4078a0b16d2c56e4a80978d5ef960a67\\godot-lib.debug\\res\\values-pt\\values-pt.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "75",
-                        "endOffsets": "126"
+                        "endOffsets": "213"
                     }
                 }
             ]

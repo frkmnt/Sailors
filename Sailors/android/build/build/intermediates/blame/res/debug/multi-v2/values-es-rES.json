@@ -4,13 +4,20 @@
             "outputFile": "S:\\Documents\\Projects\\Sailors\\Sailors\\android\\build\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-es-rES\\values-es-rES.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\frkmnt\\.gradle\\caches\\transforms-2\\files-2.1\\4078a0b16d2c56e4a80978d5ef960a67\\godot-lib.debug\\res\\values-es-rES\\values-es-rES.xml",
+                    "source": "S:\\Documents\\Projects\\Sailors\\Sailors\\android\\build\\res\\values-es-rES\\godot_project_name_string.xml",
                     "from": {
+                        "startLines": "3",
+                        "startColumns": "1",
+                        "startOffsets": "112",
+                        "endColumns": "58",
+                        "endOffsets": "169"
+                    },
+                    "to": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
-                        "endColumns": "78",
-                        "endOffsets": "129"
+                        "endColumns": "61",
+                        "endOffsets": "112"
                     }
                 }
             ]

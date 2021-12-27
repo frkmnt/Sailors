@@ -1,0 +1,29 @@
+Todo:
+	* Implement Google Play
+	* Online deck UI
+	* Online Deck server
+	* Dont allow repeated cards to be added to decks (using regex)
+	* Card Viewer Options (search, filter, etc)
+	* Deck Viewer Options (Search Decks, ask to reload default decks if all decks are deleted)
+	* Game options (Loopable decks, time limit, etc)
+	* Deck Options (name, info, upload)
+	* "Are you sure?" pop-us (with dont show again)
+	* Info Rules
+	* Sound
+	
+	
+Minor Todo:
+	* Improve accordion open/close animation (with size scaling)
+	* Finetune Ads
+	* Improve accordion item click
+	* Improve add player labels
+	* card viewer swipe left to remove card
+	* Fix fonts
+	* Improve deck loader (load cards, instead of decks w repeated cards, preparation for the online server)
+	* Fix Click overlay bug
+	* Drink with moderation warning
+	* Add red names to player stash
+	* Switching cards in the stashes changes the player's name to the next player's name
+	
+
+

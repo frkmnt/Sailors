@@ -1,0 +1,37 @@
+
+Sailors To-Do:
+
+	* Game Logo
+	
+	* Color Palette
+	
+	* Deck Cards : 	-> Universal Card back a combinar com fundo cada diferente menu de jogo
+							-> Do Card Front
+							-> Keep Card Front
+							-> Choose Card Front
+							-> Parrot Card Front
+							
+							
+	* Font: Choose the fonts for the game
+		
+	
+	* Button Design
+		* Texture for each button
+		* Icons : -> Parrot
+					-> Sailor/Pirate Avatar
+					
+	* Design and layout for each main menu page (10 Menus, ads must be taken into consideration, they will occupy a bit of the bottom screen)    
+															
+															
+															
+	* Different game menus:  -> Main menu
+								->6 ocean backgrounds: day/night weather for a calm sea, an agitated sea, and a storm, representing the card difficulty)
+								-> Other game effects as needed
+								
+								
+
+beccaboothesupremeoverlord@gmail.com
+
+https://support.google.com/admob/answer/6293636?hl=en#:~:text=The%20300x250%20ad%20is%20the,its%20unique%20size%20and%20shape.
+
+

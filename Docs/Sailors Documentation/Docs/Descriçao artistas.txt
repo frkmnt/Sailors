@@ -1,0 +1,49 @@
+Design:
+		* Expor o Tema -> Sailors e o que é a aplicaçao + explicar o tema da aplicaçao
+						-> Dizer a resoluçao de todos os componentes para caber nos ecras (1080x1920)
+						-> Ecra Vertical os Menus de Setup + Ecras Horizontais os Menus de Jogo
+						
+		* Tema -> Viagem em navio em alto mar com navios de piratas e marinheiros 
+						
+	PEDIR OS SEGUINTES ASSETS DESENHADOS NESSA RESOLUÇAO
+		
+		* Logo do jogo
+		
+		* Palete de cores
+		
+		* Cartas de baralho : 	-> Costas da Carta a combinar com fundo cada diferente menu de jogo
+								-> Frente Do Card a combinar com fundo cada diferente menu de jogo
+								-> Frente Keep Card a combinar com fundo cada diferente menu de jogo
+								-> Frente Choose Card a combinar com fundo cada diferente menu de jogo
+								-> Frente Empty Card a combinar com fundo cada diferente menu de jogo	
+								
+								
+			* Font: Pedir sugestão de font que se se enquadre nas cartas
+			
+		
+		* Design de Botões
+			* Textura para cada botao de todos os menus (Bau do tesouro (Botão de Stash))
+			* Icones : -> Papagaio
+						-> Avatar Pirata/Marinheiro 
+						
+		* Design de cada pagina (10 Menus (podem partilhar backgroud, do varia layout e texturas de botoes + 1 menu de popup + Diferentes Menus de Jogo[ ver em baixo ]):   -> Mandar Screenshot de cada menu para fazer o que quiser
+																-> Nos depois enviamos detalhes com a importancia dos botoes em cada pagina (botoes mais relevantes no centro e maiores)
+																
+		TODOS OS MENUS TEM ESPAÇO NO FIM PARA SOBREPOR OS ANUNCIOS (Horizontal ou vertical depenendo do tipo de menu)
+																
+		*Diferentes Menus de Jogo:  -> Menu Principal de jogo (ver imagem) (sem ceu e mar, só navio : pirata e )
+									->6 fundos iguais no oceano mas com condiçoes metereologicas diferentes: dia e noite calma, dia e noite nublada, dia e noite com chuva e raios)
+									-> Conjunto de animaçao/Menu dos 2 montros marinhos (Ver imagem)
+									
+									
+		
+						
+				   
+															
+															
+		
+		
+															
+		
+		
+		

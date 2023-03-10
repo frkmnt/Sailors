@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Fonts/Custom_Fonts/cardTitleLabel.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Fonts/Custom_Fonts/cardLabel.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Menus/MainMenu/AddPlayers/AddPlayerMenu.gd" type="Script" id=3]
+[ext_resource path="res://Components/MiscButtons/BackButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Components/MiscButtons/MenuButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Components/MiscButtons/AddButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Components/MiscButtons/RemoveButton.tscn" type="PackedScene" id=7]
+
+[node name="AddPlayerMenu" type="Panel"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_right = 1080.0
+margin_bottom = 1920.0
+script = ExtResource( 3 )
+
+[node name="Title" type="Label" parent="."]
+margin_top = 40.0
+margin_right = 1080.0
+margin_bottom = 307.0
+custom_fonts/font = ExtResource( 1 )
+text = "Players:"
+align = 1
+valign = 1
+
+[node name="BackButton" parent="." instance=ExtResource( 4 )]
+
+[node name="TotalPlayers" type="Label" parent="."]
+margin_left = 440.0
+margin_top = 270.0
+margin_right = 640.0
+margin_bottom = 470.0
+custom_fonts/font = ExtResource( 2 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RemovePlayerButton" parent="." instance=ExtResource( 7 )]
+margin_left = 352.0
+margin_top = 325.0
+margin_right = 496.0
+margin_bottom = 449.0
+rect_scale = Vector2( 0.75, 0.75 )
+
+[node name="AddPlayerButton" parent="." instance=ExtResource( 6 )]
+margin_left = 620.0
+margin_top = 325.0
+margin_right = 764.0
+margin_bottom = 449.0
+rect_scale = Vector2( 0.75, 0.75 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_top = 550.0
+margin_right = 1080.0
+margin_bottom = 1700.0
+scroll_horizontal_enabled = false
+scroll_deadzone = 10
+
+[node name="List" type="VBoxContainer" parent="ScrollContainer"]
+mouse_filter = 2
+
+[node name="ConfirmButton" parent="." instance=ExtResource( 5 )]
+margin_left = 240.0
+margin_top = 1730.0
+margin_right = 840.0
+margin_bottom = 1910.0
+text = "Confirm"
+s_func_to_bind = "on_confirm_button"

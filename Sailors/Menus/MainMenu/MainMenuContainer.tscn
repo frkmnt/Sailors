@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Menus/MainMenu/MainMenuContainer.gd" type="Script" id=1]
+[ext_resource path="res://Menus/MainMenu/AddPlayers/AddPlayerMenu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Menus/MainMenu/CardViewer/CardViewerMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Menus/MainMenu/CardEditorMenu/CardEditorMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Menus/MainMenu/DeckViewer/DeckViewerMenu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Menus/MainMenu/MainMenu/MainMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Menus/MainMenu/DeckEditor/DeckEditorMenu.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Components/Decoration/Boat/BoatAnimManager.tscn" type="PackedScene" id=9]
+
+[node name="MainMenuContainer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="BoatAnimManager" parent="." instance=ExtResource( 9 )]
+
+[node name="MainMenu" parent="." instance=ExtResource( 7 )]
+
+[node name="AddPlayerMenu" parent="." instance=ExtResource( 2 )]
+visible = false
+
+[node name="DeckViewerMenu" parent="." instance=ExtResource( 6 )]
+visible = false
+
+[node name="CardViewerMenu" parent="." instance=ExtResource( 4 )]
+visible = false
+
+[node name="CardEditorMenu" parent="." instance=ExtResource( 5 )]
+visible = false
+
+[node name="DeckEditorMenu" parent="." instance=ExtResource( 8 )]
+visible = false

@@ -1,0 +1,103 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Fonts/Custom_Fonts/cardLabel.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Menus/MainMenu/CardEditorMenu/CardEditorMenu.gd" type="Script" id=2]
+[ext_resource path="res://Components/MiscButtons/BackButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Components/MiscButtons/MenuButton.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Theme" id=1]
+default_font = ExtResource( 1 )
+
+[node name="CardEditorMenu" type="Panel"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Title" type="Label" parent="."]
+margin_right = 1080.0
+margin_bottom = 267.0
+custom_fonts/font = ExtResource( 1 )
+text = "Edit a Card"
+align = 1
+valign = 1
+
+[node name="BackButton" parent="." instance=ExtResource( 3 )]
+
+[node name="DeckTypeDropDown" type="OptionButton" parent="."]
+margin_left = 140.0
+margin_top = 300.0
+margin_right = 940.0
+margin_bottom = 450.0
+theme = SubResource( 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Choose a Card Type"
+align = 1
+expand_icon = true
+
+[node name="NormalCardInfoContainer" type="Control" parent="."]
+visible = false
+margin_top = 550.0
+margin_right = 1080.0
+margin_bottom = 1620.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NormalCardTextEdit" type="TextEdit" parent="NormalCardInfoContainer"]
+margin_left = 65.0
+margin_top = 100.0
+margin_right = 1015.0
+margin_bottom = 1000.0
+custom_fonts/font = ExtResource( 1 )
+text = "
+
+
+
+Enter your custom card text here."
+context_menu_enabled = false
+wrap_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChooseCardInfoContainer" type="Control" parent="."]
+margin_top = 550.0
+margin_right = 1080.0
+margin_bottom = 1620.0
+
+[node name="ChooseCardOptionA" type="TextEdit" parent="ChooseCardInfoContainer"]
+margin_left = 65.0
+margin_top = 100.0
+margin_right = 1015.0
+margin_bottom = 450.0
+custom_fonts/font = ExtResource( 1 )
+text = "The first option."
+context_menu_enabled = false
+wrap_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChooseCardOptionB" type="TextEdit" parent="ChooseCardInfoContainer"]
+margin_left = 65.0
+margin_top = 615.0
+margin_right = 1015.0
+margin_bottom = 965.0
+custom_fonts/font = ExtResource( 1 )
+text = "The second option."
+context_menu_enabled = false
+wrap_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ConfirmButton" parent="." instance=ExtResource( 4 )]
+margin_left = 240.0
+margin_top = 1730.0
+margin_right = 840.0
+margin_bottom = 1910.0
+text = "Confirm"
+s_func_to_bind = "on_confirm_button_pressed"
+
+[connection signal="item_selected" from="DeckTypeDropDown" to="." method="on_drop_down_changed"]

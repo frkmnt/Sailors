@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Fonts/Custom_Fonts/cardLabel.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Menus/MainMenu/DeckEditor/DeckEditorAccordionItem.gd" type="Script" id=2]
+[ext_resource path="res://Components/MiscButtons/AddButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Components/MiscButtons/RemoveButton.tscn" type="PackedScene" id=4]
+
+[node name="DeckEditorAccordionItem" type="Panel"]
+self_modulate = Color( 0.690196, 0.690196, 0.690196, 1 )
+margin_right = 1080.0
+margin_bottom = 620.0
+rect_min_size = Vector2( 1080, 620 )
+mouse_filter = 2
+script = ExtResource( 2 )
+
+[node name="IncreaseQtyButton" parent="." instance=ExtResource( 3 )]
+margin_left = 866.0
+margin_top = 75.0
+margin_right = 1010.0
+margin_bottom = 199.0
+rect_scale = Vector2( 1, 1 )
+s_func_to_bind = "increase_card_qty_button"
+
+[node name="DecreaseQtyButton" parent="." instance=ExtResource( 4 )]
+margin_left = 866.0
+margin_top = 421.0
+margin_right = 1010.0
+margin_bottom = 545.0
+rect_scale = Vector2( 1, 1 )
+s_func_to_bind = "decrease_card_qty_button"
+
+[node name="CardDescription" type="Label" parent="."]
+margin_left = 50.0
+margin_top = 20.0
+margin_right = 810.0
+margin_bottom = 600.0
+custom_fonts/font = ExtResource( 1 )
+text = "This is a generic card description. I made it really long to see if it fits. It does, so that's pretty cool."
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="CardQuantity" type="Label" parent="."]
+margin_left = 800.0
+margin_top = 200.0
+margin_right = 1080.0
+margin_bottom = 420.0
+custom_fonts/font = ExtResource( 1 )
+text = "99"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

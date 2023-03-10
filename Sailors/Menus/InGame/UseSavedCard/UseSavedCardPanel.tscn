@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Fonts/Custom_Fonts/cardTitleLabel.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Components/InGame/Cards/KeepCardPanel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Menus/InGame/UseSavedCard/UseSavedCard.gd" type="Script" id=3]
+[ext_resource path="res://Components/MiscButtons/BackButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Components/MiscButtons/NavigateButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Components/MiscButtons/MenuButton.tscn" type="PackedScene" id=6]
+
+[node name="UseSavedCardPanel" type="Panel"]
+margin_right = 1080.0
+margin_bottom = 1920.0
+script = ExtResource( 3 )
+
+[node name="Title" type="Label" parent="."]
+margin_right = 1080.0
+margin_bottom = 447.0
+custom_fonts/font = ExtResource( 1 )
+text = "Player's Stash"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="KeepCardPanel" parent="." instance=ExtResource( 2 )]
+margin_left = 270.0
+margin_top = 470.0
+margin_right = 1350.0
+margin_bottom = 2390.0
+rect_scale = Vector2( 0.5, 0.5 )
+
+[node name="NavigateRightButton" parent="." instance=ExtResource( 5 )]
+margin_left = 1060.0
+margin_top = 890.0
+margin_right = 1204.0
+margin_bottom = 1014.0
+rect_scale = Vector2( -0.5, 0.5 )
+s_func_to_bind = "on_right_card_button"
+
+[node name="NavigateLeftButton" parent="." instance=ExtResource( 5 )]
+margin_left = 20.0
+margin_top = 890.0
+margin_right = 164.0
+margin_bottom = 1014.0
+rect_scale = Vector2( 0.5, 0.5 )
+s_func_to_bind = "on_left_card_button"
+
+[node name="ConfirmButton" parent="." instance=ExtResource( 6 )]
+margin_left = 240.0
+margin_top = 1730.0
+margin_right = 840.0
+margin_bottom = 1910.0
+text = "Confirm"
+s_func_to_bind = "on_confirm_button"
+
+[node name="BackButton" parent="." instance=ExtResource( 4 )]

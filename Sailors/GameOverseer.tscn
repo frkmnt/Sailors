@@ -1,18 +1,18 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://GameOverseer.gd" type="Script" id=1]
-[ext_resource path="res://UI/Components/Panels/MainMenu/MainMenu.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Components/DeckBootstrapper/DeckBootstrapper.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Components/ObjectFactory/ObjectFactory.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Components/AdManager/AdManager.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Menus/MainMenu/MainMenuContainer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Utils/DeckBootstrapper/DeckBootstrapper.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Utils/ObjectFactory/ObjectFactory.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Utils/AdManager/AdManager.tscn" type="PackedScene" id=5]
 
 [node name="GameOverseer" type="Node2D"]
 script = ExtResource( 1 )
-
-[node name="MainMenu" parent="." instance=ExtResource( 2 )]
 
 [node name="DeckBootstrapper" parent="." instance=ExtResource( 3 )]
 
 [node name="ObjectFactory" parent="." instance=ExtResource( 4 )]
 
 [node name="AdManager" parent="." instance=ExtResource( 5 )]
+
+[node name="MenuContainer" parent="." instance=ExtResource( 2 )]

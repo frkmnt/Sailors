@@ -13,6 +13,7 @@ Current Features:
   * Google ads integration for banner ads only.
   * Fully animated main-menu and sub-menus.
   * Fully functional gameplay with the chosen deck.
+  * Mobile Integration
 
 ***
 

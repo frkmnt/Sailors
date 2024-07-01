@@ -31,8 +31,4 @@ The main menu:
 
 ![In-Game Screenshot](/Screenshots/1.png)
 
-<br>
 
-The in-game menu. Clicking the center will discard the current card and draw a new one.
-
-![In-Game Screenshot](/Screenshots/2.png)
